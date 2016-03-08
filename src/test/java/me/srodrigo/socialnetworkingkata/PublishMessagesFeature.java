@@ -1,5 +1,6 @@
 package me.srodrigo.socialnetworkingkata;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InOrder;
@@ -11,12 +12,18 @@ import static org.mockito.Mockito.inOrder;
 @RunWith(MockitoJUnitRunner.class)
 public class PublishMessagesFeature {
 
+	private Prompt prompt;
+
 	@Mock private Console console;
+
+	@Before
+	public void setUp() {
+		CommandsProcessor commandsProcessor = new CommandsProcessor();
+		prompt = new Prompt(commandsProcessor);
+	}
 
 	@Test public void
 	read_published_messages_by_users() {
-		Prompt prompt = new Prompt();
-
 		prompt.readCommand("Alice -> I love the weather today");
 		prompt.readCommand("Bob -> Damn! We lost!");
 		prompt.readCommand("Bob -> Good game though.");

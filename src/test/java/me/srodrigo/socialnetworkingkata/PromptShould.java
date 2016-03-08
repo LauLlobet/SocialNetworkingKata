@@ -17,7 +17,7 @@ public class PromptShould {
 
 	@Before
 	public void setUp() {
-		prompt = new Prompt();
+		prompt = new Prompt(commandsProcessor);
 	}
 
 	@Test public void
