@@ -18,7 +18,7 @@ public class CommandsProcessorShould {
 
 	@Before
 	public void setUp() {
-		commandsProcessor = new CommandsProcessor();
+		commandsProcessor = new CommandsProcessor(postService);
 	}
 
 	@Test public void

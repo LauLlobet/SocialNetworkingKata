@@ -1,5 +1,6 @@
 package me.srodrigo.socialnetworkingkata;
 
+import me.srodrigo.socialnetworkingkata.posts.PostService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,7 +19,8 @@ public class PublishMessagesFeature {
 
 	@Before
 	public void setUp() {
-		CommandsProcessor commandsProcessor = new CommandsProcessor();
+		PostService postService = new PostService();
+		CommandsProcessor commandsProcessor = new CommandsProcessor(postService);
 		prompt = new Prompt(commandsProcessor);
 	}
 
