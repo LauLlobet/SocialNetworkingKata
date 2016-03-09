@@ -17,6 +17,6 @@ public class UsersRepositoryShould {
 
 	@Test public void
 	be_empty_after_being_created() {
-		assertThat(usersRepository.count(), is(0));
+		assertThat(usersRepository.findAll().size(), is(0));
 	}
 }
