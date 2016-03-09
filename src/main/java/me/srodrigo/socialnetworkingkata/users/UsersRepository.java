@@ -7,6 +7,6 @@ public class UsersRepository {
 	}
 
 	public int count() {
-		throw new UnsupportedOperationException();
+		return 0;
 	}
 }
