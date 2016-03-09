@@ -21,7 +21,7 @@ public class PostServiceShould {
 
 	@Before
 	public void setUp() {
-		postService = new PostService();
+		postService = new PostService(postsRepository, usersRepository);
 	}
 
 	@Test public void
