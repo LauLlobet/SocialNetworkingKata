@@ -8,11 +8,15 @@ public class UsersRepository {
 
 	private List<User> users = new ArrayList<>();
 
-	public User findOrCreate(String username) {
+	public User findByUsername(String username) {
 		throw new UnsupportedOperationException();
 	}
 
 	public List<User> findAll() {
 		return Collections.unmodifiableList(users);
+	}
+
+	public User create(String username) {
+		throw new UnsupportedOperationException();
 	}
 }

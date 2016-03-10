@@ -1,20 +1,20 @@
 package me.srodrigo.socialnetworkingkata;
 
-import me.srodrigo.socialnetworkingkata.posts.PostService;
+import me.srodrigo.socialnetworkingkata.users.UserService;
 
 public class CommandsProcessor {
 
 	private static final String POST_MESSAGE_KEYWORD = "->";
-	private final PostService postService;
+	private final UserService userService;
 
-	public CommandsProcessor(PostService postService) {
-		this.postService = postService;
+	public CommandsProcessor(UserService userService) {
+		this.userService = userService;
 	}
 
 	public void process(String command) {
 		if (command.contains(POST_MESSAGE_KEYWORD)) {
 			CreatePostParameters parameters = extractCreatePostParameters(command);
-			postService.createPost(parameters.username, parameters.postMessage);
+			userService.createPost(parameters.username, parameters.postMessage);
 		}
 	}
 

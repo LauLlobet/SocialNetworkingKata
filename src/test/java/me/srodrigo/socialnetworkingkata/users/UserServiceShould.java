@@ -1,7 +1,6 @@
-package me.srodrigo.socialnetworkingkata.posts;
+package me.srodrigo.socialnetworkingkata.users;
 
-import me.srodrigo.socialnetworkingkata.users.User;
-import me.srodrigo.socialnetworkingkata.users.UsersRepository;
+import me.srodrigo.socialnetworkingkata.posts.PostsRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,16 +11,16 @@ import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
 
 @RunWith(MockitoJUnitRunner.class)
-public class PostServiceShould {
+public class UserServiceShould {
 
-	private PostService postService;
+	private UserService userService;
 
-	@Mock private PostsRepository postsRepository;
 	@Mock private UsersRepository usersRepository;
+	@Mock private PostsRepository postsRepository;
 
 	@Before
 	public void setUp() {
-		postService = new PostService(postsRepository, usersRepository);
+		userService = new UserService(usersRepository, postsRepository);
 	}
 
 	@Test public void
@@ -29,11 +28,16 @@ public class PostServiceShould {
 		String username = "username";
 		String message = "Post message";
 
-		User user = new User();
-		given(usersRepository.findOrCreate(username)).willReturn(user);
+		given(usersRepository.findByUsername(username)).willReturn(User.NULL);
+		User user = user(username);
+		given(usersRepository.create(username)).willReturn(user);
 
-		postService.createPost(username, message);
+		userService.createPost(username, message);
 
 		verify(postsRepository).createPostForUser(message, user);
+	}
+
+	private User user(String username) {
+		return new User(username);
 	}
 }
