@@ -13,6 +13,11 @@ public class UserService {
 	}
 
 	public void createPost(String username, String message) {
-		throw new UnsupportedOperationException();
+		User user = usersRepository.findByUsername(username);
+		if (user.equals(User.NULL)) {
+			user = usersRepository.create(username);
+		}
+
+		postsRepository.createPostForUser(message, user);
 	}
 }
