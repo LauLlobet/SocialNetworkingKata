@@ -37,6 +37,19 @@ public class UserServiceShould {
 		verify(postsRepository).createPostForUser(message, user);
 	}
 
+	@Test public void
+	store_a_message_for_an_existing_user() {
+		String username = "username";
+		String message = "Post message";
+
+		User user = user(username);
+		given(usersRepository.findByUsername(username)).willReturn(user);
+
+		userService.createPost(username, message);
+
+		verify(postsRepository).createPostForUser(message, user);
+	}
+
 	private User user(String username) {
 		return new User(username);
 	}
