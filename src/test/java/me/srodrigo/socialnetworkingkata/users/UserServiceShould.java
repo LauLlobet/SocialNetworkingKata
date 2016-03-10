@@ -13,6 +13,10 @@ import static org.mockito.Mockito.verify;
 @RunWith(MockitoJUnitRunner.class)
 public class UserServiceShould {
 
+	private static final String USERNAME = "username";
+	private static final String POST_MESSAGE = "Post message";
+	private static final User USER = user(USERNAME);
+
 	private UserService userService;
 
 	@Mock private UsersRepository usersRepository;
@@ -25,32 +29,24 @@ public class UserServiceShould {
 
 	@Test public void
 	create_a_user_if_it_does_not_exist_and_store_a_message() {
-		String username = "username";
-		String message = "Post message";
+		given(usersRepository.findByUsername(USERNAME)).willReturn(User.NULL);
+		given(usersRepository.create(USERNAME)).willReturn(USER);
 
-		given(usersRepository.findByUsername(username)).willReturn(User.NULL);
-		User user = user(username);
-		given(usersRepository.create(username)).willReturn(user);
+		userService.createPost(USERNAME, POST_MESSAGE);
 
-		userService.createPost(username, message);
-
-		verify(postsRepository).createPostForUser(message, user);
+		verify(postsRepository).createPostForUser(POST_MESSAGE, USER);
 	}
 
 	@Test public void
 	store_a_message_for_an_existing_user() {
-		String username = "username";
-		String message = "Post message";
+		given(usersRepository.findByUsername(USERNAME)).willReturn(USER);
 
-		User user = user(username);
-		given(usersRepository.findByUsername(username)).willReturn(user);
+		userService.createPost(USERNAME, POST_MESSAGE);
 
-		userService.createPost(username, message);
-
-		verify(postsRepository).createPostForUser(message, user);
+		verify(postsRepository).createPostForUser(POST_MESSAGE, USER);
 	}
 
-	private User user(String username) {
+	private static User user(String username) {
 		return new User(username);
 	}
 }
