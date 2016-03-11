@@ -9,7 +9,7 @@ public class UsersRepository {
 	private List<User> users = new ArrayList<>();
 
 	public User findByUsername(String username) {
-		throw new UnsupportedOperationException();
+		return User.NULL;
 	}
 
 	public List<User> findAll() {
