@@ -30,6 +30,13 @@ public class PostsRepositoryShould {
 		assertThat(allPosts.get(0), is(post(USER.username(), MESSAGE)));
 	}
 
+	@Test public void
+	return_created_post() {
+		Post post = postsRepository.createPostForUser(MESSAGE, USER);
+
+		assertThat(post, is(post(USER.username(), MESSAGE)));
+	}
+
 	private Post post(String username, String message) {
 		return new Post(username, message);
 	}
