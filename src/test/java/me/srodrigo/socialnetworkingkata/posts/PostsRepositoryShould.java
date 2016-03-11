@@ -13,6 +13,7 @@ public class PostsRepositoryShould {
 
 	private static final User USER = new User("username");
 	private static final String MESSAGE = "A message";
+
 	private PostsRepository postsRepository;
 
 	@Before
