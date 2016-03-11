@@ -8,6 +8,8 @@ import static org.junit.Assert.assertThat;
 
 public class UsersRepositoryShould {
 
+	public static final String USERNAME = "username";
+
 	private UsersRepository usersRepository;
 
 	@Before
@@ -22,8 +24,21 @@ public class UsersRepositoryShould {
 
 	@Test public void
 	return_null_user_when_username_does_not_exist() {
-		User user = usersRepository.findByUsername("username");
+		User user = usersRepository.findByUsername(USERNAME);
 
 		assertThat(user, is(User.NULL));
+	}
+
+	@Test public void
+	find_an_existing_user_by_username() {
+		usersRepository.create(USERNAME);
+
+		User user = usersRepository.findByUsername(USERNAME);
+
+		assertThat(user, is(user(USERNAME)));
+	}
+
+	private User user(String username) {
+		return new User(username);
 	}
 }
