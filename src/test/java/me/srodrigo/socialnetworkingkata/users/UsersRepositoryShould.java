@@ -9,6 +9,7 @@ import static org.junit.Assert.assertThat;
 public class UsersRepositoryShould {
 
 	public static final String USERNAME = "username";
+	public static final User USER = user(USERNAME);
 
 	private UsersRepository usersRepository;
 
@@ -35,10 +36,17 @@ public class UsersRepositoryShould {
 
 		User user = usersRepository.findByUsername(USERNAME);
 
-		assertThat(user, is(user(USERNAME)));
+		assertThat(user, is(USER));
 	}
 
-	private User user(String username) {
+	@Test public void
+	return_created_user() {
+		User user = usersRepository.create(USERNAME);
+
+		assertThat(user, is(USER));
+	}
+
+	private static User user(String username) {
 		return new User(username);
 	}
 }
