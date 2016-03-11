@@ -3,8 +3,9 @@ package me.srodrigo.socialnetworkingkata.posts;
 import me.srodrigo.socialnetworkingkata.users.User;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
+
+import static java.util.Collections.unmodifiableList;
 
 public class PostsRepository {
 
@@ -17,6 +18,6 @@ public class PostsRepository {
 	}
 
 	public List<Post> findAll() {
-		return Collections.unmodifiableList(posts);
+		return unmodifiableList(posts);
 	}
 }

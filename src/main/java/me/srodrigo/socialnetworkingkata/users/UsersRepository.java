@@ -1,8 +1,9 @@
 package me.srodrigo.socialnetworkingkata.users;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
+
+import static java.util.Collections.unmodifiableList;
 
 public class UsersRepository {
 
@@ -16,7 +17,7 @@ public class UsersRepository {
 	}
 
 	public List<User> findAll() {
-		return Collections.unmodifiableList(users);
+		return unmodifiableList(users);
 	}
 
 	public User create(String username) {
