@@ -8,8 +8,8 @@ import static org.junit.Assert.assertThat;
 
 public class UsersRepositoryShould {
 
-	public static final String USERNAME = "username";
-	public static final User USER = user(USERNAME);
+	private static final String USERNAME = "username";
+	private static final User USER = user(USERNAME);
 
 	private UsersRepository usersRepository;
 
