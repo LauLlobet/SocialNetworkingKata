@@ -19,4 +19,11 @@ public class UsersRepositoryShould {
 	be_empty_after_being_created() {
 		assertThat(usersRepository.findAll().size(), is(0));
 	}
+
+	@Test public void
+	return_null_user_when_username_does_not_exist() {
+		User user = usersRepository.findByUsername("username");
+
+		assertThat(user, is(User.NULL));
+	}
 }
