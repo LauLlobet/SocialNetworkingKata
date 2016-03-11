@@ -9,7 +9,10 @@ public class UsersRepository {
 	private List<User> users = new ArrayList<>();
 
 	public User findByUsername(String username) {
-		return User.NULL;
+		return users.stream()
+				.filter(user -> user.username().equals(username))
+				.findFirst()
+				.orElse(User.NULL);
 	}
 
 	public List<User> findAll() {
@@ -17,6 +20,8 @@ public class UsersRepository {
 	}
 
 	public User create(String username) {
-		throw new UnsupportedOperationException();
+		User newUser = new User(username);
+		users.add(newUser);
+		return newUser;
 	}
 }
