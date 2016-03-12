@@ -20,4 +20,8 @@ public class PostsRepository {
 	public List<Post> findAll() {
 		return unmodifiableList(posts);
 	}
+
+	public List<Post> findByUsername(String username) {
+		throw new UnsupportedOperationException();
+	}
 }

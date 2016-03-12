@@ -1,5 +1,7 @@
 package me.srodrigo.socialnetworkingkata.users;
 
+import me.srodrigo.socialnetworkingkata.posts.Post;
+import me.srodrigo.socialnetworkingkata.posts.PostsPrinter;
 import me.srodrigo.socialnetworkingkata.posts.PostsRepository;
 import org.junit.Before;
 import org.junit.Test;
@@ -7,6 +9,9 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import java.util.List;
+
+import static java.util.Arrays.asList;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
 
@@ -21,6 +26,7 @@ public class UserServiceShould {
 
 	@Mock private UsersRepository usersRepository;
 	@Mock private PostsRepository postsRepository;
+	@Mock private PostsPrinter postsPrinter;
 
 	@Before
 	public void setUp() {
@@ -44,6 +50,19 @@ public class UserServiceShould {
 		userService.createPost(USERNAME, POST_MESSAGE);
 
 		verify(postsRepository).createPostForUser(POST_MESSAGE, USER);
+	}
+
+	@Test public void
+	print_user_timeline() {
+		List<Post> posts = asList(
+				new Post(USERNAME, "First message"),
+				new Post(USERNAME, "Second message")
+		);
+		given(postsRepository.findByUsername(USERNAME)).willReturn(posts);
+
+		userService.showTimeline(USERNAME);
+
+		verify(postsPrinter).print(posts);
 	}
 
 	private static User user(String username) {
