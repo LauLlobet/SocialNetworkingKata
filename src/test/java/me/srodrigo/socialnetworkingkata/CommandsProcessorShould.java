@@ -27,4 +27,11 @@ public class CommandsProcessorShould {
 
 		verify(userService).createPost("Alice", "I love the weather today");
 	}
+
+	@Test public void
+	process_timeline_command_string() {
+		commandsProcessor.process("Alice");
+
+		verify(userService).showTimeline("Alice");
+	}
 }

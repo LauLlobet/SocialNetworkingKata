@@ -20,4 +20,8 @@ public class UserService {
 
 		postsRepository.createPostForUser(message, user);
 	}
+
+	public void showTimeline(String username) {
+		throw new UnsupportedOperationException();
+	}
 }
