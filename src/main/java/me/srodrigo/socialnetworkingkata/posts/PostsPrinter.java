@@ -7,7 +7,7 @@ import java.util.List;
 
 public class PostsPrinter {
 
-	public static final Comparator<Post> POST_COMPARATOR_BY_DATE =
+	private static final Comparator<Post> POST_COMPARATOR_BY_DATE =
 			(o1, o2) -> {
 				// Reverse order
 				if (o1.date() > o2.date()) return -1;
