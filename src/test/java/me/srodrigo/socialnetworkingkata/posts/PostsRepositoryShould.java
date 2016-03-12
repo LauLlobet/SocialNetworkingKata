@@ -49,7 +49,7 @@ public class PostsRepositoryShould {
 		List<Post> userPosts = postsRepository.findByUsername(expectedUsername);
 
 		assertThat(userPosts.size(), is(1));
-		assertThat(userPosts.get(0), is(post(expectedPostMessage, expectedUsername)));
+		assertThat(userPosts.get(0), is(post(expectedUsername, expectedPostMessage)));
 	}
 
 	private Post post(String username, String message) {

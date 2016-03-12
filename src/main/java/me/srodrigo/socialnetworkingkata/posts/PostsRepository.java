@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static java.util.Collections.unmodifiableList;
+import static java.util.stream.Collectors.toList;
 
 public class PostsRepository {
 
@@ -22,6 +23,8 @@ public class PostsRepository {
 	}
 
 	public List<Post> findByUsername(String username) {
-		throw new UnsupportedOperationException();
+		return posts.stream()
+				.filter(post -> post.username().equals(username))
+				.collect(toList());
 	}
 }

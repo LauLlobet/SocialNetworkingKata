@@ -10,6 +10,10 @@ public class Post {
 		this.message = message;
 	}
 
+	public String username() {
+		return username;
+	}
+
 	@Override public boolean equals(Object o) {
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;
