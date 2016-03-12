@@ -15,6 +15,7 @@ public class PastDateFormatterTest {
 
 	private static final long NOW = 1000000L;
 	private static final long ONE_MINUTE_AGO = NOW - Clock.MILLIS_IN_MINUTE;
+	private static final long FIVE_MINUTES_AGO = NOW - 5 * Clock.MILLIS_IN_MINUTE;
 
 	private PastDateFormatter pastDateFormatter;
 
@@ -28,9 +29,16 @@ public class PastDateFormatterTest {
 	}
 
 	@Test public void
-	parse_one_minute_ago() {
+	format_one_minute_ago() {
 		String dateFormatted = pastDateFormatter.format(ONE_MINUTE_AGO);
 
 		assertThat(dateFormatted, is("1 minute ago"));
+	}
+
+	@Test public void
+	format_five_minutes_ago() {
+		String dateFormatted = pastDateFormatter.format(FIVE_MINUTES_AGO);
+
+		assertThat(dateFormatted, is("5 minutes ago"));
 	}
 }
