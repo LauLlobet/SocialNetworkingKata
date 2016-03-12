@@ -23,7 +23,7 @@ public class PastDateFormatterTest {
 
 	@Before
 	public void setUp() {
-		pastDateFormatter = new PastDateFormatter();
+		pastDateFormatter = new PastDateFormatter(clock);
 
 		given(clock.now()).willReturn(NOW);
 	}
