@@ -16,6 +16,10 @@ public class Post {
 		return username;
 	}
 
+	public String message() {
+		return message;
+	}
+
 	public long date() {
 		return date;
 	}

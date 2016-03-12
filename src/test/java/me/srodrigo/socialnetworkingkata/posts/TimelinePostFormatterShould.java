@@ -24,7 +24,7 @@ public class TimelinePostFormatterShould {
 
 	@Before
 	public void setUp() {
-		timelinePostFormatter = new TimelinePostFormatter();
+		timelinePostFormatter = new TimelinePostFormatter(pastDateFormatter);
 	}
 
 	@Test public void
