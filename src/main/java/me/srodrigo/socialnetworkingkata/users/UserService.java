@@ -10,13 +10,13 @@ public class UserService {
 
 	private final UsersRepository usersRepository;
 	private final PostsRepository postsRepository;
-	private final PostsPrinter postsPrinter;
+	private final PostsPrinter timelinePrinter;
 
 	public UserService(UsersRepository usersRepository, PostsRepository postsRepository,
-	                   PostsPrinter postsPrinter) {
+	                   PostsPrinter timelinePrinter) {
 		this.postsRepository = postsRepository;
 		this.usersRepository = usersRepository;
-		this.postsPrinter = postsPrinter;
+		this.timelinePrinter = timelinePrinter;
 	}
 
 	public void createPost(String username, String message) {
@@ -31,6 +31,6 @@ public class UserService {
 	public void showTimeline(String username) {
 		List<Post> userPosts = postsRepository.findByUsername(username);
 
-		postsPrinter.print(userPosts);
+		timelinePrinter.print(userPosts);
 	}
 }
