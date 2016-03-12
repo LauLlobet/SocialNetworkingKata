@@ -10,8 +10,8 @@ import org.mockito.InOrder;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import static me.srodrigo.socialnetworkingkata.TimeTestUtil.minutesAgo;
-import static me.srodrigo.socialnetworkingkata.TimeTestUtil.now;
+import static me.srodrigo.socialnetworkingkata.TestUtil.minutesAgo;
+import static me.srodrigo.socialnetworkingkata.TestUtil.now;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.inOrder;
 

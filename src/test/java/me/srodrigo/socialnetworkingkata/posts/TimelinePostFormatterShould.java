@@ -6,7 +6,8 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import static me.srodrigo.socialnetworkingkata.TimeTestUtil.minutesAgo;
+import static me.srodrigo.socialnetworkingkata.TestUtil.minutesAgo;
+import static me.srodrigo.socialnetworkingkata.TestUtil.post;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 import static org.mockito.BDDMockito.given;
@@ -33,10 +34,6 @@ public class TimelinePostFormatterShould {
 		String postFormatted = timelinePostFormatter.format(post);
 
 		assertThat(postFormatted, is("Damn! We lost! (2 minutes ago)"));
-	}
-
-	private static Post post(String username, String message, long date) {
-		return new Post(username, message, date);
 	}
 
 }

@@ -12,7 +12,9 @@ import org.mockito.runners.MockitoJUnitRunner;
 import java.util.List;
 
 import static java.util.Arrays.asList;
-import static me.srodrigo.socialnetworkingkata.TimeTestUtil.now;
+import static me.srodrigo.socialnetworkingkata.TestUtil.now;
+import static me.srodrigo.socialnetworkingkata.TestUtil.post;
+import static me.srodrigo.socialnetworkingkata.TestUtil.user;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
 
@@ -66,11 +68,4 @@ public class UserServiceShould {
 		verify(postsPrinter).print(posts);
 	}
 
-	private static User user(String username) {
-		return new User(username);
-	}
-
-	private static Post post(String username, String message, long date) {
-		return new Post(username, message, date);
-	}
 }

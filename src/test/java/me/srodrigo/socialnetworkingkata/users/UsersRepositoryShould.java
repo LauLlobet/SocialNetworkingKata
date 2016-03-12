@@ -3,6 +3,7 @@ package me.srodrigo.socialnetworkingkata.users;
 import org.junit.Before;
 import org.junit.Test;
 
+import static me.srodrigo.socialnetworkingkata.TestUtil.user;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
@@ -46,7 +47,4 @@ public class UsersRepositoryShould {
 		assertThat(user, is(USER));
 	}
 
-	private static User user(String username) {
-		return new User(username);
-	}
 }

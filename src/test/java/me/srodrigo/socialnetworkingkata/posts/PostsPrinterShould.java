@@ -11,8 +11,9 @@ import org.mockito.runners.MockitoJUnitRunner;
 import java.util.List;
 
 import static java.util.Arrays.asList;
-import static me.srodrigo.socialnetworkingkata.TimeTestUtil.minutesLater;
-import static me.srodrigo.socialnetworkingkata.TimeTestUtil.now;
+import static me.srodrigo.socialnetworkingkata.TestUtil.minutesLater;
+import static me.srodrigo.socialnetworkingkata.TestUtil.now;
+import static me.srodrigo.socialnetworkingkata.TestUtil.post;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.inOrder;
 
@@ -51,10 +52,6 @@ public class PostsPrinterShould {
 		InOrder inOrder = inOrder(console);
 		inOrder.verify(console).printLine(SECOND_POST_FORMATTED);
 		inOrder.verify(console).printLine(FIRST_POST_FORMATTED);
-	}
-
-	private static Post post(String username, String message, long date) {
-		return new Post(username, message, date);
 	}
 
 }

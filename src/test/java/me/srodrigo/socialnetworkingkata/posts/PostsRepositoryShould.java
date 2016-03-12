@@ -9,7 +9,9 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 import java.util.List;
 
-import static me.srodrigo.socialnetworkingkata.TimeTestUtil.now;
+import static me.srodrigo.socialnetworkingkata.TestUtil.now;
+import static me.srodrigo.socialnetworkingkata.TestUtil.post;
+import static me.srodrigo.socialnetworkingkata.TestUtil.user;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 import static org.mockito.BDDMockito.given;
@@ -17,7 +19,7 @@ import static org.mockito.BDDMockito.given;
 @RunWith(MockitoJUnitRunner.class)
 public class PostsRepositoryShould {
 
-	private static final User USER = new User("username");
+	private static final User USER = user("username");
 	private static final String MESSAGE = "A message";
 
 	private PostsRepository postsRepository;
@@ -58,14 +60,6 @@ public class PostsRepositoryShould {
 
 		assertThat(userPosts.size(), is(1));
 		assertThat(userPosts.get(0), is(post(expectedUsername, expectedPostMessage, now())));
-	}
-
-	private Post post(String username, String message, long date) {
-		return new Post(username, message, date);
-	}
-
-	private User user(String username) {
-		return new User(username);
 	}
 
 }
