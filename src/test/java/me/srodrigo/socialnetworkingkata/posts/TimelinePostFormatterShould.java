@@ -20,7 +20,6 @@ public class TimelinePostFormatterShould {
 
 	private TimelinePostFormatter timelinePostFormatter;
 
-	@Mock private Clock clock;
 	@Mock private PastDateFormatter pastDateFormatter;
 
 	@Before
@@ -30,7 +29,6 @@ public class TimelinePostFormatterShould {
 
 	@Test public void
 	format_the_post_using_message_and_date_in_text() {
-		given(clock.now()).willReturn(NOW);
 		given(pastDateFormatter.format(TWO_MINUTES_AGO)).willReturn("2 minutes ago");
 
 		Post post = post(USERNAME, "Damn! We lost!", TWO_MINUTES_AGO);
