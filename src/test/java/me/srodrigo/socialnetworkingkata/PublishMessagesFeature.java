@@ -31,8 +31,7 @@ public class PublishMessagesFeature {
 		TimelinePostFormatter timelinePostFormatter = new TimelinePostFormatter(pastDateFormatter);
 		PostsPrinter timelinePrinter = new PostsPrinter(timelinePostFormatter, console);
 		UserService userService = new UserService(usersRepository, postsRepository, timelinePrinter);
-		CommandsProcessor commandsProcessor = new CommandsProcessor(userService);
-		prompt = new Prompt(commandsProcessor);
+		prompt = new Prompt(userService);
 	}
 
 	@Test public void

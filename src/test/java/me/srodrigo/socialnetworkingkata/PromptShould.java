@@ -1,5 +1,6 @@
 package me.srodrigo.socialnetworkingkata;
 
+import me.srodrigo.socialnetworkingkata.users.UserService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,17 +14,24 @@ public class PromptShould {
 
 	private Prompt prompt;
 
-	@Mock private CommandsProcessor commandsProcessor;
+	@Mock private UserService userService;
 
 	@Before
 	public void setUp() {
-		prompt = new Prompt(commandsProcessor);
+		prompt = new Prompt(userService);
 	}
 
 	@Test public void
-	process_a_command() {
+	process_posting_command_string() {
+		prompt.readCommand("Alice -> I love the weather today");
+
+		verify(userService).createPost("Alice", "I love the weather today");
+	}
+
+	@Test public void
+	process_timeline_command_string() {
 		prompt.readCommand("Alice");
 
-		verify(commandsProcessor).process("Alice");
+		verify(userService).showTimeline("Alice");
 	}
 }
