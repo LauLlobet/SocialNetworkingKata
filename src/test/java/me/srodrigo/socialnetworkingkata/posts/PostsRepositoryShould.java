@@ -9,6 +9,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 import java.util.List;
 
+import static me.srodrigo.socialnetworkingkata.TimeTestUtil.now;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 import static org.mockito.BDDMockito.given;
@@ -18,7 +19,6 @@ public class PostsRepositoryShould {
 
 	private static final User USER = new User("username");
 	private static final String MESSAGE = "A message";
-	private static final long NOW = 1000000L;
 
 	private PostsRepository postsRepository;
 	@Mock private Clock clock;
@@ -26,7 +26,7 @@ public class PostsRepositoryShould {
 	@Before
 	public void setUp() {
 		postsRepository = new PostsRepository(clock);
-		given(clock.now()).willReturn(NOW);
+		given(clock.now()).willReturn(now());
 	}
 
 	@Test public void
@@ -36,14 +36,14 @@ public class PostsRepositoryShould {
 		List<Post> allPosts = postsRepository.findAll();
 
 		assertThat(allPosts.size(), is(1));
-		assertThat(allPosts.get(0), is(post(USER.username(), MESSAGE, NOW)));
+		assertThat(allPosts.get(0), is(post(USER.username(), MESSAGE, now())));
 	}
 
 	@Test public void
 	return_created_post() {
 		Post post = postsRepository.createPostForUser(MESSAGE, USER);
 
-		assertThat(post, is(post(USER.username(), MESSAGE, NOW)));
+		assertThat(post, is(post(USER.username(), MESSAGE, now())));
 	}
 
 	@Test public void
@@ -57,7 +57,7 @@ public class PostsRepositoryShould {
 		List<Post> userPosts = postsRepository.findByUsername(expectedUsername);
 
 		assertThat(userPosts.size(), is(1));
-		assertThat(userPosts.get(0), is(post(expectedUsername, expectedPostMessage, NOW)));
+		assertThat(userPosts.get(0), is(post(expectedUsername, expectedPostMessage, now())));
 	}
 
 	private Post post(String username, String message, long date) {

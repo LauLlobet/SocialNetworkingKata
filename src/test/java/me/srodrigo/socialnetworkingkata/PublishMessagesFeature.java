@@ -10,16 +10,13 @@ import org.mockito.InOrder;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import static me.srodrigo.socialnetworkingkata.TimeTestUtil.minutesAgo;
+import static me.srodrigo.socialnetworkingkata.TimeTestUtil.now;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.inOrder;
 
 @RunWith(MockitoJUnitRunner.class)
 public class PublishMessagesFeature {
-
-	private static final long NOW = 1000000L;
-	private static final long ONE_MINUTE_AGO = NOW - Clock.MILLIS_IN_MINUTE;
-	private static final long TWO_MINUTES_AGO = NOW - 2 * Clock.MILLIS_IN_MINUTE;
-	private static final long FIVE_MINUTES_AGO = NOW - 5 * Clock.MILLIS_IN_MINUTE;
 
 	private Prompt prompt;
 
@@ -42,9 +39,9 @@ public class PublishMessagesFeature {
 	read_published_messages_by_users() {
 		given(clock.now()).willReturn(
 				// Create posts
-				FIVE_MINUTES_AGO, TWO_MINUTES_AGO, ONE_MINUTE_AGO,
+				minutesAgo(5), minutesAgo(2), minutesAgo(1),
 				// Show posts
-				NOW, NOW, NOW);
+				now(), now(), now());
 
 		prompt.readCommand("Alice -> I love the weather today");
 		prompt.readCommand("Bob -> Damn! We lost!");

@@ -11,20 +11,18 @@ import org.mockito.runners.MockitoJUnitRunner;
 import java.util.List;
 
 import static java.util.Arrays.asList;
+import static me.srodrigo.socialnetworkingkata.TimeTestUtil.minutesLater;
+import static me.srodrigo.socialnetworkingkata.TimeTestUtil.now;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.inOrder;
 
 @RunWith(MockitoJUnitRunner.class)
 public class PostsPrinterShould {
 
-	private static final long NOW = 1000000L;
-	private static final long ONE_MINUTE_LATER = NOW + Clock.MILLIS_IN_MINUTE;
-	private static final long TWO_MINUTES_LATER = NOW + 2 * Clock.MILLIS_IN_MINUTE;
-
 	private static final String USERNAME = "username";
-	private static final Post FIRST_POST = post(USERNAME, "Damn! We lost!", NOW);
+	private static final Post FIRST_POST = post(USERNAME, "Damn! We lost!", now());
 	private static final String FIRST_POST_FORMATTED = "Damn! We lost! (2 minutes ago)";
-	private static final Post SECOND_POST = post(USERNAME, "Good game though.", ONE_MINUTE_LATER);
+	private static final Post SECOND_POST = post(USERNAME, "Good game though.", minutesLater(1));
 	private static final String SECOND_POST_FORMATTED = "Good game though. (1 minute ago)";
 
 	private PostsPrinter postsPrinter;
@@ -40,12 +38,12 @@ public class PostsPrinterShould {
 
 	@Test public void
 	print_posts_in_reverse_chronological_order() {
-		given(clock.now()).willReturn(NOW, ONE_MINUTE_LATER);
+		given(clock.now()).willReturn(now(), minutesLater(1));
 
 		given(postFormatter.format(FIRST_POST)).willReturn(FIRST_POST_FORMATTED);
 		given(postFormatter.format(SECOND_POST)).willReturn(SECOND_POST_FORMATTED);
 
-		given(clock.now()).willReturn(TWO_MINUTES_LATER);
+		given(clock.now()).willReturn(minutesLater(2));
 
 		List<Post> posts = asList(FIRST_POST, SECOND_POST);
 		postsPrinter.print(posts);

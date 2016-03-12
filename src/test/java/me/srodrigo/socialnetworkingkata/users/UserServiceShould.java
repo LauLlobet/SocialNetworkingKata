@@ -12,6 +12,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 import java.util.List;
 
 import static java.util.Arrays.asList;
+import static me.srodrigo.socialnetworkingkata.TimeTestUtil.now;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
 
@@ -21,7 +22,6 @@ public class UserServiceShould {
 	private static final String USERNAME = "username";
 	private static final String POST_MESSAGE = "Post message";
 	private static final User USER = user(USERNAME);
-	private static final long DATE = 1000000L;
 
 	private UserService userService;
 
@@ -56,8 +56,8 @@ public class UserServiceShould {
 	@Test public void
 	print_user_timeline() {
 		List<Post> posts = asList(
-				post(USERNAME, "First message", DATE),
-				post(USERNAME, "Second message", DATE)
+				post(USERNAME, "First message", now()),
+				post(USERNAME, "Second message", now())
 		);
 		given(postsRepository.findByUsername(USERNAME)).willReturn(posts);
 
