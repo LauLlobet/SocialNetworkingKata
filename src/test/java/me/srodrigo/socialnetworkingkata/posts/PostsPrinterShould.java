@@ -36,7 +36,7 @@ public class PostsPrinterShould {
 
 	@Before
 	public void setUp() {
-		postsPrinter = new PostsPrinter();
+		postsPrinter = new PostsPrinter(postFormatter, console);
 	}
 
 	@Test public void

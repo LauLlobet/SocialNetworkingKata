@@ -1,10 +1,32 @@
 package me.srodrigo.socialnetworkingkata.posts;
 
+import me.srodrigo.socialnetworkingkata.Console;
+
+import java.util.Comparator;
 import java.util.List;
 
 public class PostsPrinter {
 
+	public static final Comparator<Post> POST_COMPARATOR_BY_DATE =
+			(o1, o2) -> {
+				// Reverse order
+				if (o1.date() > o2.date()) return -1;
+				else if (o1.date() < o2.date()) return 1;
+				return 0;
+			};
+
+	private final PostFormatter postFormatter;
+	private final Console console;
+
+	public PostsPrinter(PostFormatter postFormatter, Console console) {
+		this.postFormatter = postFormatter;
+		this.console = console;
+	}
+
 	public void print(List<Post> posts) {
-		throw new UnsupportedOperationException();
+		posts.stream()
+				.sorted(POST_COMPARATOR_BY_DATE)
+				.map(postFormatter::format)
+				.forEachOrdered(console::printLine);
 	}
 }
