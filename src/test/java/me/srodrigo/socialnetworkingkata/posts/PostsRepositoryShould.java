@@ -38,8 +38,26 @@ public class PostsRepositoryShould {
 		assertThat(post, is(post(USER.username(), MESSAGE)));
 	}
 
+	@Test public void
+	find_posts_by_username() {
+		String expectedUsername = "Alice";
+		String expectedPostMessage = "Alice's message";
+		postsRepository.createPostForUser(expectedPostMessage, user(expectedUsername));
+
+		postsRepository.createPostForUser("Bob's message", user("Bob"));
+
+		List<Post> userPosts = postsRepository.findByUsername(expectedUsername);
+
+		assertThat(userPosts.size(), is(1));
+		assertThat(userPosts.get(0), is(post(expectedPostMessage, expectedUsername)));
+	}
+
 	private Post post(String username, String message) {
 		return new Post(username, message);
+	}
+
+	private User user(String username) {
+		return new User(username);
 	}
 
 }
