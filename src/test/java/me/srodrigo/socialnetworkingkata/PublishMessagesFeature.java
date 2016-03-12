@@ -10,10 +10,16 @@ import org.mockito.InOrder;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.inOrder;
 
 @RunWith(MockitoJUnitRunner.class)
 public class PublishMessagesFeature {
+
+	private static final long NOW = 1000000L;
+	private static final long ONE_MINUTE_AGO = NOW - Clock.MILLIS_IN_MINUTE;
+	private static final long TWO_MINUTES_AGO = NOW - 2 * Clock.MILLIS_IN_MINUTE;
+	private static final long FIVE_MINUTES_AGO = NOW - 5 * Clock.MILLIS_IN_MINUTE;
 
 	private Prompt prompt;
 
@@ -24,7 +30,9 @@ public class PublishMessagesFeature {
 	public void setUp() {
 		UsersRepository usersRepository = new UsersRepository();
 		PostsRepository postsRepository = new PostsRepository(clock);
-		PostsPrinter timelinePrinter = new PostsPrinter(post -> null, console);
+		PastDateFormatter pastDateFormatter = new PastDateFormatter(clock);
+		TimelinePostFormatter timelinePostFormatter = new TimelinePostFormatter(pastDateFormatter);
+		PostsPrinter timelinePrinter = new PostsPrinter(timelinePostFormatter, console);
 		UserService userService = new UserService(usersRepository, postsRepository, timelinePrinter);
 		CommandsProcessor commandsProcessor = new CommandsProcessor(userService);
 		prompt = new Prompt(commandsProcessor);
@@ -32,6 +40,12 @@ public class PublishMessagesFeature {
 
 	@Test public void
 	read_published_messages_by_users() {
+		given(clock.now()).willReturn(
+				// Create posts
+				FIVE_MINUTES_AGO, TWO_MINUTES_AGO, ONE_MINUTE_AGO,
+				// Show posts
+				NOW, NOW, NOW);
+
 		prompt.readCommand("Alice -> I love the weather today");
 		prompt.readCommand("Bob -> Damn! We lost!");
 		prompt.readCommand("Bob -> Good game though.");
