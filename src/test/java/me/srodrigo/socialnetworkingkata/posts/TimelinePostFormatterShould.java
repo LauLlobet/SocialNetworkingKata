@@ -13,9 +13,8 @@ import static org.mockito.BDDMockito.given;
 @RunWith(MockitoJUnitRunner.class)
 public class TimelinePostFormatterShould {
 
-	private static final int MILLIS_IN_MINUTE = 60000;
 	private static final long NOW = 1000000L;
-	private static final long TWO_MINUTES_AGO = NOW - 2 * MILLIS_IN_MINUTE;
+	private static final long TWO_MINUTES_AGO = NOW - 2 * Clock.MILLIS_IN_MINUTE;
 	private static final String USERNAME = "Bob";
 
 	private TimelinePostFormatter timelinePostFormatter;

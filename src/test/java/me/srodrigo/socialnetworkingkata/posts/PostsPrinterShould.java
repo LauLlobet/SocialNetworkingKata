@@ -17,10 +17,9 @@ import static org.mockito.Mockito.inOrder;
 @RunWith(MockitoJUnitRunner.class)
 public class PostsPrinterShould {
 
-	private static final int MILLIS_IN_MINUTE = 60000;
 	private static final long NOW = 1000000L;
-	private static final long ONE_MINUTE_LATER = NOW + MILLIS_IN_MINUTE;
-	private static final long TWO_MINUTES_LATER = NOW + 2 * MILLIS_IN_MINUTE;
+	private static final long ONE_MINUTE_LATER = NOW + Clock.MILLIS_IN_MINUTE;
+	private static final long TWO_MINUTES_LATER = NOW + 2 * Clock.MILLIS_IN_MINUTE;
 
 	private static final String USERNAME = "username";
 	private static final Post FIRST_POST = post(USERNAME, "Damn! We lost!", NOW);
