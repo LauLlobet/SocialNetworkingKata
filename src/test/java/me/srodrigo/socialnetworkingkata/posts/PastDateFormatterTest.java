@@ -41,4 +41,11 @@ public class PastDateFormatterTest {
 
 		assertThat(dateFormatted, is("5 minutes ago"));
 	}
+
+	@Test public void
+	format_five_minutes_ago_minus_one_millisecond() {
+		String dateFormatted = pastDateFormatter.format(FIVE_MINUTES_AGO + 1);
+
+		assertThat(dateFormatted, is("4 minutes ago"));
+	}
 }
