@@ -16,7 +16,7 @@ import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.inOrder;
 
 @RunWith(MockitoJUnitRunner.class)
-public class PublishMessagesFeature {
+public class UsersTimelineFeature {
 
 	private Prompt prompt;
 
