@@ -15,6 +15,8 @@ public class CommandsProcessor {
 		if (command.contains(POST_MESSAGE_KEYWORD)) {
 			CreatePostParameters parameters = extractCreatePostParameters(command);
 			userService.createPost(parameters.username, parameters.postMessage);
+		} else {
+			userService.showTimeline(command);
 		}
 	}
 
