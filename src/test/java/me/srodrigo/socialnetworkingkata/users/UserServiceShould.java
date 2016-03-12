@@ -55,8 +55,8 @@ public class UserServiceShould {
 	@Test public void
 	print_user_timeline() {
 		List<Post> posts = asList(
-				new Post(USERNAME, "First message"),
-				new Post(USERNAME, "Second message")
+				post(USERNAME, "First message"),
+				post(USERNAME, "Second message")
 		);
 		given(postsRepository.findByUsername(USERNAME)).willReturn(posts);
 
@@ -67,5 +67,9 @@ public class UserServiceShould {
 
 	private static User user(String username) {
 		return new User(username);
+	}
+
+	private static Post post(String username, String message) {
+		return new Post(username, message);
 	}
 }
