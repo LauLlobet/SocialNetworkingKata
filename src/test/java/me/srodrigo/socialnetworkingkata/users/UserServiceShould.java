@@ -21,6 +21,7 @@ public class UserServiceShould {
 	private static final String USERNAME = "username";
 	private static final String POST_MESSAGE = "Post message";
 	private static final User USER = user(USERNAME);
+	private static final long DATE = 1000000L;
 
 	private UserService userService;
 
@@ -55,8 +56,8 @@ public class UserServiceShould {
 	@Test public void
 	print_user_timeline() {
 		List<Post> posts = asList(
-				post(USERNAME, "First message"),
-				post(USERNAME, "Second message")
+				post(USERNAME, "First message", DATE),
+				post(USERNAME, "Second message", DATE)
 		);
 		given(postsRepository.findByUsername(USERNAME)).willReturn(posts);
 
@@ -69,7 +70,7 @@ public class UserServiceShould {
 		return new User(username);
 	}
 
-	private static Post post(String username, String message) {
-		return new Post(username, message);
+	private static Post post(String username, String message, long date) {
+		return new Post(username, message, date);
 	}
 }

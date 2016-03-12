@@ -13,7 +13,7 @@ public class PostsRepository {
 	private List<Post> posts = new ArrayList<>();
 
 	public Post createPostForUser(String message, User user) {
-		Post newPost = new Post(user.username(), message);
+		Post newPost = new Post(user.username(), message, 0);
 		posts.add(newPost);
 		return newPost;
 	}

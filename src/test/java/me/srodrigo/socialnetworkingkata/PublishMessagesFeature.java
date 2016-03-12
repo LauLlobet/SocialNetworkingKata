@@ -1,5 +1,6 @@
 package me.srodrigo.socialnetworkingkata;
 
+import me.srodrigo.socialnetworkingkata.posts.Clock;
 import me.srodrigo.socialnetworkingkata.posts.PostsPrinter;
 import me.srodrigo.socialnetworkingkata.users.UserService;
 import me.srodrigo.socialnetworkingkata.posts.PostsRepository;
@@ -19,6 +20,7 @@ public class PublishMessagesFeature {
 	private Prompt prompt;
 
 	@Mock private Console console;
+	@Mock private Clock clock;
 
 	@Before
 	public void setUp() {
