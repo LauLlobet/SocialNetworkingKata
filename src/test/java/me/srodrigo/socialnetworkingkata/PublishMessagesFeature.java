@@ -36,15 +36,15 @@ public class PublishMessagesFeature {
 
 	@Test public void
 	read_published_messages_by_users() {
-		given(clock.now()).willReturn(
-				// Create posts
-				minutesAgo(5), minutesAgo(2), minutesAgo(1),
-				// Show posts
-				now(), now(), now());
+		// Create posts
+		given(clock.now()).willReturn(minutesAgo(5), minutesAgo(2), minutesAgo(1));
 
 		prompt.readCommand("Alice -> I love the weather today");
 		prompt.readCommand("Bob -> Damn! We lost!");
 		prompt.readCommand("Bob -> Good game though.");
+
+		// Show timeline
+		given(clock.now()).willReturn(now(), now(), now());
 
 		prompt.readCommand("Alice");
 
