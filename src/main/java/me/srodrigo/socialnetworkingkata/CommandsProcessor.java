@@ -12,18 +12,30 @@ public class CommandsProcessor {
 	}
 
 	public void process(String command) {
-		if (command.contains(POST_MESSAGE_KEYWORD)) {
-			CreatePostParameters parameters = extractCreatePostParameters(command);
-			userService.createPost(parameters.username, parameters.postMessage);
+		if (isPostingCommand(command)) {
+			createPost(command);
 		} else {
-			userService.showTimeline(command);
+			showTimeline(command);
 		}
+	}
+
+	private boolean isPostingCommand(String command) {
+		return command.contains(POST_MESSAGE_KEYWORD);
+	}
+
+	private void createPost(String command) {
+		CreatePostParameters parameters = extractCreatePostParameters(command);
+		userService.createPost(parameters.username, parameters.postMessage);
 	}
 
 	private CreatePostParameters extractCreatePostParameters(String command) {
 		String keywordWithSpaces = String.format(" %s ", POST_MESSAGE_KEYWORD);
 		String[] tokens = command.split(keywordWithSpaces);
 		return new CreatePostParameters(tokens[0], tokens[1]);
+	}
+
+	private void showTimeline(String username) {
+		userService.showTimeline(username);
 	}
 
 	private class CreatePostParameters {
