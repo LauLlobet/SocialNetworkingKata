@@ -10,10 +10,15 @@ import static java.util.stream.Collectors.toList;
 
 public class PostsRepository {
 
+	private final Clock clock;
 	private List<Post> posts = new ArrayList<>();
 
+	public PostsRepository(Clock clock) {
+		this.clock = clock;
+	}
+
 	public Post createPostForUser(String message, User user) {
-		Post newPost = new Post(user.username(), message, 0);
+		Post newPost = new Post(user.username(), message, clock.now());
 		posts.add(newPost);
 		return newPost;
 	}

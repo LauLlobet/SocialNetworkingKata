@@ -25,7 +25,7 @@ public class PostsRepositoryShould {
 
 	@Before
 	public void setUp() {
-		postsRepository = new PostsRepository();
+		postsRepository = new PostsRepository(clock);
 		given(clock.now()).willReturn(NOW);
 	}
 

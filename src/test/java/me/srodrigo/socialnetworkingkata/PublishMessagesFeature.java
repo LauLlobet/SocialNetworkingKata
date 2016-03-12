@@ -25,7 +25,7 @@ public class PublishMessagesFeature {
 	@Before
 	public void setUp() {
 		UsersRepository usersRepository = new UsersRepository();
-		PostsRepository postsRepository = new PostsRepository();
+		PostsRepository postsRepository = new PostsRepository(clock);
 		PostsPrinter postsPrinter = new PostsPrinter();
 		UserService userService = new UserService(usersRepository, postsRepository, postsPrinter);
 		CommandsProcessor commandsProcessor = new CommandsProcessor(userService);
