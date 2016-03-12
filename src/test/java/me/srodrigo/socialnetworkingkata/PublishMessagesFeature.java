@@ -1,5 +1,6 @@
 package me.srodrigo.socialnetworkingkata;
 
+import me.srodrigo.socialnetworkingkata.posts.PostsPrinter;
 import me.srodrigo.socialnetworkingkata.users.UserService;
 import me.srodrigo.socialnetworkingkata.posts.PostsRepository;
 import me.srodrigo.socialnetworkingkata.users.UsersRepository;
@@ -23,7 +24,8 @@ public class PublishMessagesFeature {
 	public void setUp() {
 		UsersRepository usersRepository = new UsersRepository();
 		PostsRepository postsRepository = new PostsRepository();
-		UserService userService = new UserService(usersRepository, postsRepository);
+		PostsPrinter postsPrinter = new PostsPrinter();
+		UserService userService = new UserService(usersRepository, postsRepository, postsPrinter);
 		CommandsProcessor commandsProcessor = new CommandsProcessor(userService);
 		prompt = new Prompt(commandsProcessor);
 	}

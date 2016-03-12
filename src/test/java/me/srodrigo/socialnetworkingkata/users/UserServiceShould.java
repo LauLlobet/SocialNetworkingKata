@@ -30,7 +30,7 @@ public class UserServiceShould {
 
 	@Before
 	public void setUp() {
-		userService = new UserService(usersRepository, postsRepository);
+		userService = new UserService(usersRepository, postsRepository, postsPrinter);
 	}
 
 	@Test public void
