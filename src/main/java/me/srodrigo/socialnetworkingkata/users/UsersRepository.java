@@ -2,6 +2,7 @@ package me.srodrigo.socialnetworkingkata.users;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 
 import static java.util.Collections.unmodifiableList;
 
@@ -11,7 +12,7 @@ public class UsersRepository {
 
 	public User findByUsername(String username) {
 		return users.stream()
-				.filter(user -> user.username().equals(username))
+				.filter(byUsername(username))
 				.findFirst()
 				.orElse(User.NULL);
 	}
@@ -28,9 +29,13 @@ public class UsersRepository {
 
 	public void addFollower(String follower, String followed) {
 		users.stream()
-				.filter(user -> user.username().equals(follower))
+				.filter(byUsername(follower))
 				.findFirst()
 				.get()
 				.addFollowed(followed);
+	}
+
+	private Predicate<User> byUsername(String username) {
+		return user -> user.username().equals(username);
 	}
 }
