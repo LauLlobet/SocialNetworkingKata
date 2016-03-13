@@ -34,4 +34,11 @@ public class PromptShould {
 
 		verify(userService).showTimeline("Alice");
 	}
+
+	@Test public void
+	process_following_command_string() {
+		prompt.readCommand("Charlie follows Alice");
+
+		verify(userService).follow("Charlie", "Alice");
+	}
 }
