@@ -2,10 +2,10 @@ package me.srodrigo.socialnetworkingkata.posts;
 
 public class PastDateFormatter {
 
-	private static final String ONE_SECOND_AGO = "1 second ago";
-	private static final String N_SECONDS_AGO_FORMAT = "%d seconds ago";
-	private static final String ONE_MINUTE_AGO = "1 minute ago";
-	private static final String N_MINUTES_AGO_FORMAT = "%d minutes ago";
+	private static final String SINGULAR_FORMAT = "1 %s ago";
+	private static final String PLURAL_FORMAT = "%d %ss ago";
+	private static final String SECONDS_UNIT = "second";
+	private static final String MINUTES_UNIT = "minute";
 
 	private final Clock clock;
 
@@ -14,30 +14,36 @@ public class PastDateFormatter {
 	}
 
 	public String format(long pastDate) {
-		long now = clock.now();
-		long millisElapsed = now - pastDate;
+		long millisElapsed = millisElapsed(pastDate);
 
-		boolean lessThanAMinute = millisElapsed < Clock.MILLIS_IN_MINUTE;
-		if (lessThanAMinute) {
-			int seconds = (int) (millisElapsed / Clock.MILLIS_IN_SECOND);
-			return formatSeconds(seconds);
+		if (isLessThanOneMinute(millisElapsed)) {
+			return formatInSeconds(millisElapsed);
 		}
-
-		int minutes = (int) (millisElapsed / Clock.MILLIS_IN_MINUTE);
-		return formatMinutes(minutes);
+		return formatInMinutes(millisElapsed);
 	}
 
-	private String formatSeconds(int seconds) {
-		if (seconds == 1) {
-			return ONE_SECOND_AGO;
-		}
-		return String.format(N_SECONDS_AGO_FORMAT, seconds);
+	private long millisElapsed(long pastDate) {
+		return clock.now() - pastDate;
 	}
 
-	private String formatMinutes(int minutes) {
-		if (minutes == 1) {
-			return ONE_MINUTE_AGO;
-		}
-		return String.format(N_MINUTES_AGO_FORMAT, minutes);
+	private boolean isLessThanOneMinute(long millisElapsed) {
+		return millisElapsed < Clock.MILLIS_IN_MINUTE;
 	}
+
+	private String formatInSeconds(long millisElapsed) {
+		return formatTimeElapsed(millisElapsed, SECONDS_UNIT, Clock.MILLIS_IN_SECOND);
+	}
+
+	private String formatInMinutes(long millisElapsed) {
+		return formatTimeElapsed(millisElapsed, MINUTES_UNIT, Clock.MILLIS_IN_MINUTE);
+	}
+
+	private String formatTimeElapsed(long millisElapsed, String unitText, int millisPerUnit) {
+		int units = (int) (millisElapsed / millisPerUnit);
+		if (units == 1) {
+			return String.format(SINGULAR_FORMAT, unitText);
+		}
+		return String.format(PLURAL_FORMAT, units, unitText);
+	}
+
 }
