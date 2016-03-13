@@ -19,6 +19,12 @@ public class User {
 		this.followersUsernames = followersUsernames;
 	}
 
+	public void addFollowed(String followed) {
+		if (!followersUsernames.contains(followed)) {
+			followersUsernames.add(followed);
+		}
+	}
+
 	public String username() {
 		return username;
 	}

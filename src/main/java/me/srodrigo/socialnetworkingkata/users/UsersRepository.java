@@ -27,6 +27,10 @@ public class UsersRepository {
 	}
 
 	public void addFollower(String follower, String followed) {
-		throw new UnsupportedOperationException();
+		users.stream()
+				.filter(user -> user.username().equals(follower))
+				.findFirst()
+				.get()
+				.addFollowed(followed);
 	}
 }

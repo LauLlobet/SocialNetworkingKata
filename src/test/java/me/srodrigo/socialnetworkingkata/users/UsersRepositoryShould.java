@@ -3,8 +3,6 @@ package me.srodrigo.socialnetworkingkata.users;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.List;
-
 import static java.util.Collections.singletonList;
 import static me.srodrigo.socialnetworkingkata.TestUtil.user;
 import static me.srodrigo.socialnetworkingkata.TestUtil.userWithFollowers;
