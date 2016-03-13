@@ -34,7 +34,7 @@ public class UserService {
 		timelinePrinter.print(userPosts);
 	}
 
-	public void follow(String follower, String followed) {
+	public void addFollower(String follower, String followed) {
 		throw new UnsupportedOperationException();
 	}
 }

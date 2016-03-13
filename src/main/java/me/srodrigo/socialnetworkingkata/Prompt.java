@@ -42,7 +42,7 @@ public class Prompt {
 
 	private void followUser(String command) {
 		FollowUserParameters parameters = extractFollowUserParameters(command);
-		userService.follow(parameters.follower, parameters.followed);
+		userService.addFollower(parameters.follower, parameters.followed);
 	}
 
 	private FollowUserParameters extractFollowUserParameters(String command) {
