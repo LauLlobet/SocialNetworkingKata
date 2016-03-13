@@ -28,10 +28,24 @@ public class PastDateFormatterTest {
 	}
 
 	@Test public void
+	format_zero_seconds_ago() {
+		String dateFormatted = pastDateFormatter.format(secondsAgo(1) + 1);
+
+		assertThat(dateFormatted, is("0 seconds ago"));
+	}
+
+	@Test public void
 	format_one_second_ago() {
 		String dateFormatted = pastDateFormatter.format(secondsAgo(1));
 
 		assertThat(dateFormatted, is("1 second ago"));
+	}
+
+	@Test public void
+	format_fifty_nine_seconds_ago() {
+		String dateFormatted = pastDateFormatter.format(minutesAgo(1) + 1);
+
+		assertThat(dateFormatted, is("59 seconds ago"));
 	}
 
 	@Test public void
