@@ -36,9 +36,8 @@ public class Prompt {
 	}
 
 	private CreatePostParameters extractCreatePostParameters(String command) {
-		String keywordWithSpaces = String.format(" %s ", POST_MESSAGE_KEYWORD);
-		String[] tokens = command.split(keywordWithSpaces);
-		return new CreatePostParameters(tokens[0], tokens[1]);
+		String[] parameters = extractParametersFromBinaryCommand(command, POST_MESSAGE_KEYWORD);
+		return new CreatePostParameters(parameters[0], parameters[1]);
 	}
 
 	private void followUser(String command) {
@@ -47,9 +46,13 @@ public class Prompt {
 	}
 
 	private FollowUserParameters extractFollowUserParameters(String command) {
-		String keywordWithSpaces = String.format(" %s ", FOLLOW_KEYWORD);
-		String[] tokens = command.split(keywordWithSpaces);
-		return new FollowUserParameters(tokens[0], tokens[1]);
+		String[] parameters = extractParametersFromBinaryCommand(command, FOLLOW_KEYWORD);
+		return new FollowUserParameters(parameters[0], parameters[1]);
+	}
+
+	private String[] extractParametersFromBinaryCommand(String command, String keyword) {
+		String keywordWithSpaces = String.format(" %s ", keyword);
+		return command.split(keywordWithSpaces);
 	}
 
 	private void showTimeline(String username) {
