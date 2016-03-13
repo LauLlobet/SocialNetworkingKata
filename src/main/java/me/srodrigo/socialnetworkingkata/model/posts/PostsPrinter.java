@@ -7,9 +7,8 @@ import java.util.List;
 
 public class PostsPrinter {
 
-	private static final Comparator<Post> POST_COMPARATOR_BY_DATE =
+	private static final Comparator<Post> BY_DATE_REVERSE_ORDER =
 			(o1, o2) -> {
-				// Reverse order
 				if (o1.date() > o2.date()) return -1;
 				else if (o1.date() < o2.date()) return 1;
 				return 0;
@@ -25,7 +24,7 @@ public class PostsPrinter {
 
 	public void print(List<Post> posts) {
 		posts.stream()
-				.sorted(POST_COMPARATOR_BY_DATE)
+				.sorted(BY_DATE_REVERSE_ORDER)
 				.map(postFormatter::format)
 				.forEachOrdered(console::printLine);
 	}
