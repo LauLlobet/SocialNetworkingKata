@@ -14,7 +14,7 @@ import static org.junit.Assert.assertThat;
 import static org.mockito.BDDMockito.given;
 
 @RunWith(MockitoJUnitRunner.class)
-public class PastDateFormatterTest {
+public class PastDateFormatterShould {
 
 	private PastDateFormatter pastDateFormatter;
 
