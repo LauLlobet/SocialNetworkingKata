@@ -34,7 +34,7 @@ public class TestUtil {
 		return new User(username);
 	}
 
-	public static User userWithFollowers(String username, List<String> followersUsernames) {
-		return new User(username, followersUsernames);
+	public static User userWithFollowedUsernames(String username, List<String> followedUsernames) {
+		return new User(username, followedUsernames);
 	}
 }

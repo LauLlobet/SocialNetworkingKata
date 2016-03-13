@@ -39,7 +39,7 @@ public class PromptShould {
 	process_following_command_string() {
 		prompt.readCommand("Charlie follows Alice");
 
-		verify(userService).addFollower("Charlie", "Alice");
+		verify(userService).addFollowedUsername("Charlie", "Alice");
 	}
 
 	@Test public void

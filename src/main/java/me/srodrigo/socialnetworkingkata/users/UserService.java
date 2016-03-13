@@ -37,7 +37,7 @@ public class UserService {
 		timelinePrinter.print(userPosts);
 	}
 
-	public void addFollower(String follower, String followed) {
+	public void addFollowedUsername(String follower, String followed) {
 		usersRepository.addFollower(follower, followed);
 	}
 

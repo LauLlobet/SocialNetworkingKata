@@ -72,7 +72,7 @@ public class UserServiceShould {
 
 	@Test public void
 	add_a_follower() {
-		userService.addFollower(FOLLOWER, FOLLOWED);
+		userService.addFollowedUsername(FOLLOWER, FOLLOWED);
 
 		verify(usersRepository).addFollower(FOLLOWER, FOLLOWED);
 	}
@@ -82,7 +82,7 @@ public class UserServiceShould {
 		String alice = "Alice";
 		String bob = "Bob";
 		given(usersRepository.findByUsername(alice))
-				.willReturn(userWithFollowers(alice, singletonList(bob)));
+				.willReturn(userWithFollowedUsernames(alice, singletonList(bob)));
 
 		List<Post> wallPosts = asList(
 				post(alice, POST_MESSAGE, minutesAgo(1)),
