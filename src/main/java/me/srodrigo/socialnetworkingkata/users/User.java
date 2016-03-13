@@ -1,12 +1,22 @@
 package me.srodrigo.socialnetworkingkata.users;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class User {
 	public static User NULL = new User("");
 
-	private String username;
+	private final String username;
+	private final List<String> followersUsernames;
 
 	public User(String username) {
+		this(username, new ArrayList<>());
+	}
+
+	public User(String username, List<String> followersUsernames) {
+
 		this.username = username;
+		this.followersUsernames = followersUsernames;
 	}
 
 	public String username() {
@@ -19,11 +29,14 @@ public class User {
 
 		User user = (User) o;
 
-		return username != null ? username.equals(user.username) : user.username == null;
+		if (username != null ? !username.equals(user.username) : user.username != null) return false;
+		return followersUsernames != null ? followersUsernames.equals(user.followersUsernames) : user.followersUsernames == null;
 
 	}
 
 	@Override public int hashCode() {
-		return username != null ? username.hashCode() : 0;
+		int result = username != null ? username.hashCode() : 0;
+		result = 31 * result + (followersUsernames != null ? followersUsernames.hashCode() : 0);
+		return result;
 	}
 }
