@@ -43,7 +43,7 @@ public class UserServiceShould {
 
 		userService.createPost(USERNAME, POST_MESSAGE);
 
-		verify(postsRepository).createPostForUser(POST_MESSAGE, USER);
+		verify(postsRepository).createPostForUser(POST_MESSAGE, USERNAME);
 	}
 
 	@Test public void
@@ -52,7 +52,7 @@ public class UserServiceShould {
 
 		userService.createPost(USERNAME, POST_MESSAGE);
 
-		verify(postsRepository).createPostForUser(POST_MESSAGE, USER);
+		verify(postsRepository).createPostForUser(POST_MESSAGE, USERNAME);
 	}
 
 	@Test public void

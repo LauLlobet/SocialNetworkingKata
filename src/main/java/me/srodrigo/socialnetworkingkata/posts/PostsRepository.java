@@ -1,7 +1,5 @@
 package me.srodrigo.socialnetworkingkata.posts;
 
-import me.srodrigo.socialnetworkingkata.users.User;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,8 +15,8 @@ public class PostsRepository {
 		this.clock = clock;
 	}
 
-	public Post createPostForUser(String message, User user) {
-		Post newPost = new Post(user.username(), message, clock.now());
+	public Post createPostForUser(String message, String username) {
+		Post newPost = new Post(username, message, clock.now());
 		posts.add(newPost);
 		return newPost;
 	}

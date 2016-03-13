@@ -25,7 +25,7 @@ public class UserService {
 			user = usersRepository.create(username);
 		}
 
-		postsRepository.createPostForUser(message, user);
+		postsRepository.createPostForUser(message, user.username());
 	}
 
 	public void showTimeline(String username) {
