@@ -6,6 +6,8 @@ public class Prompt {
 
 	private static final String POST_MESSAGE_KEYWORD = "->";
 	private static final String FOLLOW_KEYWORD = "follows";
+	private static final String WALL_KEYWORD = "wall";
+
 	private final UserService userService;
 
 	public Prompt(UserService userService) {
@@ -17,6 +19,8 @@ public class Prompt {
 			createPost(command);
 		} else if (isFollowingCommand(command)) {
 			followUser(command);
+		} else if (isWallCommand(command)) {
+			showWall(command);
 		} else {
 			showTimeline(command);
 		}
@@ -28,6 +32,10 @@ public class Prompt {
 
 	private boolean isFollowingCommand(String command) {
 		return command.contains(FOLLOW_KEYWORD);
+	}
+
+	private boolean isWallCommand(String command) {
+		return command.endsWith(WALL_KEYWORD);
 	}
 
 	private void createPost(String command) {
@@ -53,6 +61,15 @@ public class Prompt {
 	private String[] extractParametersFromBinaryCommand(String command, String keyword) {
 		String keywordWithSpaces = String.format(" %s ", keyword);
 		return command.split(keywordWithSpaces);
+	}
+
+	private void showWall(String command) {
+		String username = extractWallUsernameParameter(command);
+		userService.showWall(username);
+	}
+
+	private String extractWallUsernameParameter(String command) {
+		return command.replace(String.format(" %s", WALL_KEYWORD), "");
 	}
 
 	private void showTimeline(String username) {
