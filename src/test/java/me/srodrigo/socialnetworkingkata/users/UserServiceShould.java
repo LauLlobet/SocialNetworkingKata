@@ -12,9 +12,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 import java.util.List;
 
 import static java.util.Arrays.asList;
-import static me.srodrigo.socialnetworkingkata.TestUtil.now;
-import static me.srodrigo.socialnetworkingkata.TestUtil.post;
-import static me.srodrigo.socialnetworkingkata.TestUtil.user;
+import static me.srodrigo.socialnetworkingkata.TestUtil.*;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
 
@@ -32,6 +30,7 @@ public class UserServiceShould {
 	@Mock private UsersRepository usersRepository;
 	@Mock private PostsRepository postsRepository;
 	@Mock private PostsPrinter postsPrinter;
+	@Mock private PostsPrinter wallPrinter;
 
 	@Before
 	public void setUp() {
@@ -75,6 +74,20 @@ public class UserServiceShould {
 		userService.addFollower(FOLLOWER, FOLLOWED);
 
 		verify(usersRepository).addFollower(FOLLOWER, FOLLOWED);
+	}
+
+	@Test public void
+	show_user_wall() {
+		List<Post> wallPosts = asList(
+				post("Alice", POST_MESSAGE, minutesAgo(1)),
+				post("Bob", POST_MESSAGE, minutesAgo(2))
+		);
+		given(postsRepository.findPostsAndSubscriptionsByUsername("Alice"))
+				.willReturn(wallPosts);
+
+		userService.showWall(USERNAME);
+
+		verify(wallPrinter).print(wallPosts);
 	}
 
 }

@@ -30,4 +30,8 @@ public class PostsRepository {
 				.filter(post -> post.username().equals(username))
 				.collect(toList());
 	}
+
+	public List<Post> findPostsAndSubscriptionsByUsername(String username) {
+		throw new UnsupportedOperationException();
+	}
 }
