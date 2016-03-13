@@ -1,4 +1,4 @@
-package me.srodrigo.socialnetworkingkata.users;
+package me.srodrigo.socialnetworkingkata.model.users;
 
 import org.junit.Before;
 import org.junit.Test;

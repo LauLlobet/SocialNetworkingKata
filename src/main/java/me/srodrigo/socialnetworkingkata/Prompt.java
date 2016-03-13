@@ -1,6 +1,6 @@
 package me.srodrigo.socialnetworkingkata;
 
-import me.srodrigo.socialnetworkingkata.users.UserService;
+import me.srodrigo.socialnetworkingkata.model.users.UserService;
 
 public class Prompt {
 

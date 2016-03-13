@@ -1,7 +1,6 @@
-package me.srodrigo.socialnetworkingkata.users;
+package me.srodrigo.socialnetworkingkata.model.users;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import static java.util.Collections.*;

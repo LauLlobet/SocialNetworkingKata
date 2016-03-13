@@ -1,8 +1,8 @@
-package me.srodrigo.socialnetworkingkata.users;
+package me.srodrigo.socialnetworkingkata.model.users;
 
-import me.srodrigo.socialnetworkingkata.posts.Post;
-import me.srodrigo.socialnetworkingkata.posts.PostsPrinter;
-import me.srodrigo.socialnetworkingkata.posts.PostsRepository;
+import me.srodrigo.socialnetworkingkata.model.posts.Post;
+import me.srodrigo.socialnetworkingkata.model.posts.PostsPrinter;
+import me.srodrigo.socialnetworkingkata.model.posts.PostsRepository;
 
 import java.util.ArrayList;
 import java.util.List;

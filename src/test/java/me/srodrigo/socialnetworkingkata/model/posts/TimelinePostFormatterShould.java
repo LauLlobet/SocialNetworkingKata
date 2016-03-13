@@ -1,4 +1,4 @@
-package me.srodrigo.socialnetworkingkata.posts;
+package me.srodrigo.socialnetworkingkata.model.posts;
 
 import me.srodrigo.socialnetworkingkata.infrastructure.PastDateFormatter;
 import org.junit.Before;
@@ -14,24 +14,27 @@ import static org.junit.Assert.assertThat;
 import static org.mockito.BDDMockito.given;
 
 @RunWith(MockitoJUnitRunner.class)
-public class WallPostFormatterShould {
+public class TimelinePostFormatterShould {
 
-	private WallPostFormatter wallPostFormatter;
+	private static final String USERNAME = "Bob";
+
+	private TimelinePostFormatter timelinePostFormatter;
 
 	@Mock private PastDateFormatter pastDateFormatter;
 
 	@Before
 	public void setUp() {
-		wallPostFormatter = new WallPostFormatter(pastDateFormatter);
+		timelinePostFormatter = new TimelinePostFormatter(pastDateFormatter);
 	}
 
 	@Test public void
-	format_a_post_message_using_username_message_and_date_in_text() {
+	format_the_post_using_message_and_date_in_text() {
 		given(pastDateFormatter.format(minutesAgo(2))).willReturn("2 minutes ago");
 
-		Post post = post("Bob", "Damn! We lost!", minutesAgo(2));
-		String postFormatted = wallPostFormatter.format(post);
+		Post post = post(USERNAME, "Damn! We lost!", minutesAgo(2));
+		String postFormatted = timelinePostFormatter.format(post);
 
-		assertThat(postFormatted, is("Bob - Damn! We lost! (2 minutes ago)"));
+		assertThat(postFormatted, is("Damn! We lost! (2 minutes ago)"));
 	}
+
 }

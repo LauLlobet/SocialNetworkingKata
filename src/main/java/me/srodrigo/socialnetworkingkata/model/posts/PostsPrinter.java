@@ -1,4 +1,4 @@
-package me.srodrigo.socialnetworkingkata.posts;
+package me.srodrigo.socialnetworkingkata.model.posts;
 
 import me.srodrigo.socialnetworkingkata.infrastructure.Console;
 
