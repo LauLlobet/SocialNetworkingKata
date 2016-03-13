@@ -31,7 +31,7 @@ public class PostsRepository {
 				.collect(toList());
 	}
 
-	public List<Post> findPostsAndSubscriptionsByUsername(String username) {
+	public List<Post> findPostsByUsernames(String... usernames) {
 		throw new UnsupportedOperationException();
 	}
 }

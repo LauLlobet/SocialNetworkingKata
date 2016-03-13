@@ -12,6 +12,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 import java.util.List;
 
 import static java.util.Arrays.asList;
+import static java.util.Collections.singletonList;
 import static me.srodrigo.socialnetworkingkata.TestUtil.*;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
@@ -78,11 +79,16 @@ public class UserServiceShould {
 
 	@Test public void
 	show_user_wall() {
+		String alice = "Alice";
+		String bob = "Bob";
+		given(usersRepository.findByUsername(alice))
+				.willReturn(userWithFollowers(alice, singletonList(bob)));
+
 		List<Post> wallPosts = asList(
-				post("Alice", POST_MESSAGE, minutesAgo(1)),
-				post("Bob", POST_MESSAGE, minutesAgo(2))
+				post(alice, POST_MESSAGE, minutesAgo(1)),
+				post(bob, POST_MESSAGE, minutesAgo(2))
 		);
-		given(postsRepository.findPostsAndSubscriptionsByUsername("Alice"))
+		given(postsRepository.findPostsByUsernames(alice, bob))
 				.willReturn(wallPosts);
 
 		userService.showWall(USERNAME);
