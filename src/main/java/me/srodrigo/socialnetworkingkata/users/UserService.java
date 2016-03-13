@@ -35,6 +35,6 @@ public class UserService {
 	}
 
 	public void addFollower(String follower, String followed) {
-		throw new UnsupportedOperationException();
+		usersRepository.addFollower(follower, followed);
 	}
 }
