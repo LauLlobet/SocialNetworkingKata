@@ -20,14 +20,21 @@ public class PostsRepositoryShould {
 
 	private static final String USERNAME = "username";
 	private static final String MESSAGE = "A message";
+	private static final String ALICE = "Alice";
+	private static final String BOB = "Bob";
+	private static final String ALICE_MESSAGE = "Alice's message";
+	private static final String BOB_MESSAGE = "Bob's message";
+	private static final String BOB_SECOND_MESSAGE = "Bob's second message";
+	private static final long DEFAULT_DATE = now();
 
 	private PostsRepository postsRepository;
+
 	@Mock private Clock clock;
 
 	@Before
 	public void setUp() {
 		postsRepository = new PostsRepository(clock);
-		given(clock.now()).willReturn(now());
+		given(clock.now()).willReturn(DEFAULT_DATE);
 	}
 
 	@Test public void
@@ -37,47 +44,39 @@ public class PostsRepositoryShould {
 		List<Post> allPosts = postsRepository.findAll();
 
 		assertThat(allPosts.size(), is(1));
-		assertThat(allPosts.get(0), is(post(USERNAME, MESSAGE, now())));
+		assertThat(allPosts.get(0), is(post(USERNAME, MESSAGE, DEFAULT_DATE)));
 	}
 
 	@Test public void
 	return_created_post() {
 		Post post = postsRepository.createPostForUser(MESSAGE, USERNAME);
 
-		assertThat(post, is(post(USERNAME, MESSAGE, now())));
+		assertThat(post, is(post(USERNAME, MESSAGE, DEFAULT_DATE)));
 	}
 
 	@Test public void
 	find_posts_by_username() {
-		String expectedUsername = "Alice";
-		String expectedPostMessage = "Alice's message";
-		postsRepository.createPostForUser(expectedPostMessage, expectedUsername);
+		postsRepository.createPostForUser(ALICE_MESSAGE, ALICE);
+		postsRepository.createPostForUser(BOB_MESSAGE, BOB);
 
-		postsRepository.createPostForUser("Bob's message", "Bob");
-
-		List<Post> userPosts = postsRepository.findByUsername(expectedUsername);
+		List<Post> userPosts = postsRepository.findByUsername(ALICE);
 
 		assertThat(userPosts.size(), is(1));
-		assertThat(userPosts.get(0), is(post(expectedUsername, expectedPostMessage, now())));
+		assertThat(userPosts.get(0), is(post(ALICE, ALICE_MESSAGE, DEFAULT_DATE)));
 	}
 
 	@Test public void
 	find_posts_by_multiple_usernames() {
-		String alice = "Alice";
-		String aliceMessage = "Alice's message";
-		postsRepository.createPostForUser(aliceMessage, alice);
-		String bob = "Bob";
-		String bobFirstMessage = "Bob's message";
-		postsRepository.createPostForUser(bobFirstMessage, bob);
-		String bobSecondMessage = "Bob's second message";
-		postsRepository.createPostForUser(bobSecondMessage, bob);
+		postsRepository.createPostForUser(ALICE_MESSAGE, ALICE);
+		postsRepository.createPostForUser(BOB_MESSAGE, BOB);
+		postsRepository.createPostForUser(BOB_SECOND_MESSAGE, BOB);
 
-		List<Post> posts = postsRepository.findPostsByUsernames(asList(alice, bob));
+		List<Post> posts = postsRepository.findPostsByUsernames(asList(ALICE, BOB));
 
 		assertThat(posts.size(), is(3));
-		assertThat(posts.get(0), is(post(alice, aliceMessage, now())));
-		assertThat(posts.get(1), is(post(bob, bobFirstMessage, now())));
-		assertThat(posts.get(2), is(post(bob, bobSecondMessage, now())));
+		assertThat(posts.get(0), is(post(ALICE, ALICE_MESSAGE, DEFAULT_DATE)));
+		assertThat(posts.get(1), is(post(BOB, BOB_MESSAGE, DEFAULT_DATE)));
+		assertThat(posts.get(2), is(post(BOB, BOB_SECOND_MESSAGE, DEFAULT_DATE)));
 	}
 
 }
