@@ -60,4 +60,23 @@ public class PostsRepositoryShould {
 		assertThat(userPosts.get(0), is(post(expectedUsername, expectedPostMessage, now())));
 	}
 
+	@Test public void
+	find_posts_by_multiple_usernames() {
+		String alice = "Alice";
+		String aliceMessage = "Alice's message";
+		postsRepository.createPostForUser(aliceMessage, alice);
+		String bob = "Bob";
+		String bobFirstMessage = "Bob's message";
+		postsRepository.createPostForUser(bobFirstMessage, bob);
+		String bobSecondMessage = "Bob's second message";
+		postsRepository.createPostForUser(bobSecondMessage, bob);
+
+		List<Post> posts = postsRepository.findPostsByUsernames(alice, bob);
+
+		assertThat(posts.size(), is(3));
+		assertThat(posts.get(0), is(post(alice, aliceMessage, now())));
+		assertThat(posts.get(1), is(post(bob, bobFirstMessage, now())));
+		assertThat(posts.get(2), is(post(bob, bobSecondMessage, now())));
+	}
+
 }
