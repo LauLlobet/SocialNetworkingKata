@@ -25,4 +25,8 @@ public class UsersRepository {
 		users.add(newUser);
 		return newUser;
 	}
+
+	public void addFollower(String follower, String followed) {
+		throw new UnsupportedOperationException();
+	}
 }

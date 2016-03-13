@@ -74,7 +74,7 @@ public class UserServiceShould {
 	add_a_follower() {
 		userService.addFollower(FOLLOWER, FOLLOWED);
 
-		verify(postsRepository).addFollower(FOLLOWER, FOLLOWED);
+		verify(usersRepository).addFollower(FOLLOWER, FOLLOWED);
 	}
 
 }
