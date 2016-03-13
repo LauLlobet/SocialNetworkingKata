@@ -8,6 +8,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 import java.util.List;
 
+import static java.util.Arrays.asList;
 import static me.srodrigo.socialnetworkingkata.TestUtil.now;
 import static me.srodrigo.socialnetworkingkata.TestUtil.post;
 import static org.hamcrest.CoreMatchers.is;
@@ -71,7 +72,7 @@ public class PostsRepositoryShould {
 		String bobSecondMessage = "Bob's second message";
 		postsRepository.createPostForUser(bobSecondMessage, bob);
 
-		List<Post> posts = postsRepository.findPostsByUsernames(alice, bob);
+		List<Post> posts = postsRepository.findPostsByUsernames(asList(alice, bob));
 
 		assertThat(posts.size(), is(3));
 		assertThat(posts.get(0), is(post(alice, aliceMessage, now())));

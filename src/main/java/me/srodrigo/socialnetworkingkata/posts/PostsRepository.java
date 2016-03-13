@@ -31,7 +31,9 @@ public class PostsRepository {
 				.collect(toList());
 	}
 
-	public List<Post> findPostsByUsernames(String... usernames) {
-		throw new UnsupportedOperationException();
+	public List<Post> findPostsByUsernames(List<String> usernames) {
+		return posts.stream()
+				.filter(post -> usernames.contains(post.username()))
+				.collect(toList());
 	}
 }

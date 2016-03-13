@@ -49,10 +49,10 @@ public class UserService {
 		wallPrinter.print(wallPosts);
 	}
 
-	private String[] usernamePlusFollowed(User user) {
+	private List<String> usernamePlusFollowed(User user) {
 		List<String> allUsernames = new ArrayList<>();
 		allUsernames.add(user.username());
 		allUsernames.addAll(user.followedUsernames());
-		return allUsernames.stream().toArray(String[]::new);
+		return allUsernames;
 	}
 }
