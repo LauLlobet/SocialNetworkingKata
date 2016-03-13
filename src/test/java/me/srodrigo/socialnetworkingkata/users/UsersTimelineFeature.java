@@ -1,8 +1,8 @@
-package me.srodrigo.socialnetworkingkata;
+package me.srodrigo.socialnetworkingkata.users;
 
+import me.srodrigo.socialnetworkingkata.Console;
+import me.srodrigo.socialnetworkingkata.Prompt;
 import me.srodrigo.socialnetworkingkata.posts.*;
-import me.srodrigo.socialnetworkingkata.users.UserService;
-import me.srodrigo.socialnetworkingkata.users.UsersRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
