@@ -12,6 +12,10 @@ public class TestUtil {
 		return NOW;
 	}
 
+	public static long secondsAgo(int seconds) {
+		return NOW - seconds * Clock.MILLIS_IN_SECOND;
+	}
+
 	public static long minutesAgo(int minutes) {
 		return NOW - minutes * Clock.MILLIS_IN_MINUTE;
 	}

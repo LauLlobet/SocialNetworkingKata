@@ -8,6 +8,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 import static me.srodrigo.socialnetworkingkata.TestUtil.minutesAgo;
 import static me.srodrigo.socialnetworkingkata.TestUtil.now;
+import static me.srodrigo.socialnetworkingkata.TestUtil.secondsAgo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 import static org.mockito.BDDMockito.given;
@@ -24,6 +25,13 @@ public class PastDateFormatterTest {
 		pastDateFormatter = new PastDateFormatter(clock);
 
 		given(clock.now()).willReturn(now());
+	}
+
+	@Test public void
+	format_one_second_ago() {
+		String dateFormatted = pastDateFormatter.format(secondsAgo(1));
+
+		assertThat(dateFormatted, is("1 second ago"));
 	}
 
 	@Test public void
