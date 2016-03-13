@@ -4,6 +4,7 @@ import me.srodrigo.socialnetworkingkata.posts.Post;
 import me.srodrigo.socialnetworkingkata.posts.PostsPrinter;
 import me.srodrigo.socialnetworkingkata.posts.PostsRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class UserService {
@@ -11,12 +12,14 @@ public class UserService {
 	private final UsersRepository usersRepository;
 	private final PostsRepository postsRepository;
 	private final PostsPrinter timelinePrinter;
+	private final PostsPrinter wallPrinter;
 
 	public UserService(UsersRepository usersRepository, PostsRepository postsRepository,
-	                   PostsPrinter timelinePrinter) {
+	                   PostsPrinter timelinePrinter, PostsPrinter wallPrinter) {
 		this.postsRepository = postsRepository;
 		this.usersRepository = usersRepository;
 		this.timelinePrinter = timelinePrinter;
+		this.wallPrinter = wallPrinter;
 	}
 
 	public void createPost(String username, String message) {
@@ -39,6 +42,17 @@ public class UserService {
 	}
 
 	public void showWall(String username) {
-		throw new UnsupportedOperationException();
+		User user = usersRepository.findByUsername(username);
+		List<Post> wallPosts = postsRepository.findPostsByUsernames(
+				usernamePlusFollowed(user));
+
+		wallPrinter.print(wallPosts);
+	}
+
+	private String[] usernamePlusFollowed(User user) {
+		List<String> allUsernames = new ArrayList<>();
+		allUsernames.add(user.username());
+		allUsernames.addAll(user.followedUsernames());
+		return allUsernames.stream().toArray(String[]::new);
 	}
 }

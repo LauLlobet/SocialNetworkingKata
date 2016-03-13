@@ -35,7 +35,7 @@ public class UserServiceShould {
 
 	@Before
 	public void setUp() {
-		userService = new UserService(usersRepository, postsRepository, postsPrinter);
+		userService = new UserService(usersRepository, postsRepository, postsPrinter, wallPrinter);
 	}
 
 	@Test public void
@@ -91,7 +91,7 @@ public class UserServiceShould {
 		given(postsRepository.findPostsByUsernames(alice, bob))
 				.willReturn(wallPosts);
 
-		userService.showWall(USERNAME);
+		userService.showWall(alice);
 
 		verify(wallPrinter).print(wallPosts);
 	}
