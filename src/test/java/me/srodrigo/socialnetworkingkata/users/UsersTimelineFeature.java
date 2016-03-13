@@ -30,7 +30,8 @@ public class UsersTimelineFeature {
 		PastDateFormatter pastDateFormatter = new PastDateFormatter(clock);
 		TimelinePostFormatter timelinePostFormatter = new TimelinePostFormatter(pastDateFormatter);
 		PostsPrinter timelinePrinter = new PostsPrinter(timelinePostFormatter, console);
-		PostsPrinter wallPrinter = new PostsPrinter(null, console);
+		PostFormatter wallPostFormatter = new WallPostFormatter(pastDateFormatter);
+		PostsPrinter wallPrinter = new PostsPrinter(wallPostFormatter, console);
 		UserService userService = new UserService(usersRepository, postsRepository, timelinePrinter, wallPrinter);
 		prompt = new Prompt(userService);
 	}
