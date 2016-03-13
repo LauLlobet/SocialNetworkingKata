@@ -1,6 +1,6 @@
 package me.srodrigo.socialnetworkingkata.posts;
 
-import me.srodrigo.socialnetworkingkata.Console;
+import me.srodrigo.socialnetworkingkata.infrastructure.Console;
 
 import java.util.Comparator;
 import java.util.List;

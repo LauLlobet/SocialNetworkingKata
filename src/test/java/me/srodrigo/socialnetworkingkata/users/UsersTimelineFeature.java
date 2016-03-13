@@ -1,7 +1,9 @@
 package me.srodrigo.socialnetworkingkata.users;
 
-import me.srodrigo.socialnetworkingkata.Console;
+import me.srodrigo.socialnetworkingkata.infrastructure.Console;
 import me.srodrigo.socialnetworkingkata.Prompt;
+import me.srodrigo.socialnetworkingkata.infrastructure.Clock;
+import me.srodrigo.socialnetworkingkata.infrastructure.PastDateFormatter;
 import me.srodrigo.socialnetworkingkata.posts.*;
 import org.junit.Before;
 import org.junit.Test;

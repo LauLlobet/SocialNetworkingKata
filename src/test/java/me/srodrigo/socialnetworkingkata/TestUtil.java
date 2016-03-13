@@ -1,6 +1,6 @@
 package me.srodrigo.socialnetworkingkata;
 
-import me.srodrigo.socialnetworkingkata.posts.Clock;
+import me.srodrigo.socialnetworkingkata.infrastructure.Clock;
 import me.srodrigo.socialnetworkingkata.posts.Post;
 import me.srodrigo.socialnetworkingkata.users.User;
 

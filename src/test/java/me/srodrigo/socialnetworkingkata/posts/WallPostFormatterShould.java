@@ -1,5 +1,6 @@
 package me.srodrigo.socialnetworkingkata.posts;
 
+import me.srodrigo.socialnetworkingkata.infrastructure.PastDateFormatter;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

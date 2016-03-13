@@ -1,5 +1,8 @@
 package me.srodrigo.socialnetworkingkata;
 
+import me.srodrigo.socialnetworkingkata.infrastructure.Clock;
+import me.srodrigo.socialnetworkingkata.infrastructure.Console;
+import me.srodrigo.socialnetworkingkata.infrastructure.PastDateFormatter;
 import me.srodrigo.socialnetworkingkata.posts.*;
 import me.srodrigo.socialnetworkingkata.users.UserService;
 import me.srodrigo.socialnetworkingkata.users.UsersRepository;

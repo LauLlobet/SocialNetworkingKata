@@ -1,4 +1,4 @@
-package me.srodrigo.socialnetworkingkata.posts;
+package me.srodrigo.socialnetworkingkata.infrastructure;
 
 public class PastDateFormatter {
 

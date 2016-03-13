@@ -1,5 +1,7 @@
 package me.srodrigo.socialnetworkingkata.posts;
 
+import me.srodrigo.socialnetworkingkata.infrastructure.Clock;
+
 import java.util.ArrayList;
 import java.util.List;
 

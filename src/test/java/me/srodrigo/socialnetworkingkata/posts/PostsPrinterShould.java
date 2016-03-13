@@ -1,6 +1,7 @@
 package me.srodrigo.socialnetworkingkata.posts;
 
-import me.srodrigo.socialnetworkingkata.Console;
+import me.srodrigo.socialnetworkingkata.infrastructure.Console;
+import me.srodrigo.socialnetworkingkata.infrastructure.Clock;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

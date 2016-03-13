@@ -1,5 +1,7 @@
 package me.srodrigo.socialnetworkingkata.posts;
 
+import me.srodrigo.socialnetworkingkata.infrastructure.PastDateFormatter;
+
 public class WallPostFormatter implements PostFormatter {
 
 	private static final String POST_FORMAT = "%s - %s (%s)";
