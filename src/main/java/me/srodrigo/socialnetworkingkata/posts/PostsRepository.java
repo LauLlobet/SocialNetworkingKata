@@ -30,4 +30,8 @@ public class PostsRepository {
 				.filter(post -> post.username().equals(username))
 				.collect(toList());
 	}
+
+	public void addFollower(String follower, String followed) {
+		throw new UnsupportedOperationException();
+	}
 }

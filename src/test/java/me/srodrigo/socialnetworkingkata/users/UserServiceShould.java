@@ -24,6 +24,8 @@ public class UserServiceShould {
 	private static final String USERNAME = "username";
 	private static final String POST_MESSAGE = "Post message";
 	private static final User USER = user(USERNAME);
+	private static final String FOLLOWER = "follower";
+	private static final String FOLLOWED = "followed";
 
 	private UserService userService;
 
@@ -66,6 +68,13 @@ public class UserServiceShould {
 		userService.showTimeline(USERNAME);
 
 		verify(postsPrinter).print(posts);
+	}
+
+	@Test public void
+	add_a_follower() {
+		userService.addFollower(FOLLOWER, FOLLOWED);
+
+		verify(postsRepository).addFollower(FOLLOWER, FOLLOWED);
 	}
 
 }
