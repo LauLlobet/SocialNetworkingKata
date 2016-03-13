@@ -41,4 +41,11 @@ public class PromptShould {
 
 		verify(userService).addFollower("Charlie", "Alice");
 	}
+
+	@Test public void
+	process_wall_command_string() {
+		prompt.readCommand("Charlie wall");
+
+		verify(userService).showWall("Charlie");
+	}
 }

@@ -37,4 +37,8 @@ public class UserService {
 	public void addFollower(String follower, String followed) {
 		usersRepository.addFollower(follower, followed);
 	}
+
+	public void showWall(String username) {
+		throw new UnsupportedOperationException();
+	}
 }
