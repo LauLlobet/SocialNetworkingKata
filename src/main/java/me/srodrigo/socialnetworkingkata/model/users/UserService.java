@@ -43,7 +43,7 @@ public class UserService {
 
 	public void showWall(String username) {
 		User user = usersRepository.findByUsername(username);
-		List<Post> wallPosts = postsRepository.findPostsByUsernames(
+		List<Post> wallPosts = postsRepository.findByUsernames(
 				usernamePlusFollowed(user));
 
 		wallPrinter.print(wallPosts);

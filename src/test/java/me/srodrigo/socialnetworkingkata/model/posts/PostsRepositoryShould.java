@@ -72,7 +72,7 @@ public class PostsRepositoryShould {
 		postsRepository.createPostForUser(BOB_MESSAGE, BOB);
 		postsRepository.createPostForUser(BOB_SECOND_MESSAGE, BOB);
 
-		List<Post> posts = postsRepository.findPostsByUsernames(asList(ALICE, BOB));
+		List<Post> posts = postsRepository.findByUsernames(asList(ALICE, BOB));
 
 		assertThat(posts.size(), is(3));
 		assertThat(posts.get(0), is(post(ALICE, ALICE_MESSAGE, DEFAULT_DATE)));

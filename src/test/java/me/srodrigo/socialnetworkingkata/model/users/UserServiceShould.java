@@ -88,7 +88,7 @@ public class UserServiceShould {
 				post(alice, POST_MESSAGE, minutesAgo(1)),
 				post(bob, POST_MESSAGE, minutesAgo(2))
 		);
-		given(postsRepository.findPostsByUsernames(asList(alice, bob)))
+		given(postsRepository.findByUsernames(asList(alice, bob)))
 				.willReturn(wallPosts);
 
 		userService.showWall(alice);
