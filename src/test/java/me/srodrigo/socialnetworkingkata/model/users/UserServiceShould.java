@@ -82,7 +82,7 @@ public class UserServiceShould {
 		String alice = "Alice";
 		String bob = "Bob";
 		given(usersRepository.findByUsername(alice))
-				.willReturn(userWithFollowedUsernames(alice, singletonList(bob)));
+				.willReturn(userFollowingUsers(alice, singletonList(bob)));
 
 		List<Post> wallPosts = asList(
 				post(alice, POST_MESSAGE, minutesAgo(1)),

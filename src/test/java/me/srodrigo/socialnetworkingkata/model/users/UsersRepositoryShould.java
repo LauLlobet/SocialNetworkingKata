@@ -5,7 +5,7 @@ import org.junit.Test;
 
 import static java.util.Collections.singletonList;
 import static me.srodrigo.socialnetworkingkata.TestUtil.user;
-import static me.srodrigo.socialnetworkingkata.TestUtil.userWithFollowedUsernames;
+import static me.srodrigo.socialnetworkingkata.TestUtil.userFollowingUsers;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
@@ -59,7 +59,7 @@ public class UsersRepositoryShould {
 		usersRepository.addFollower(FOLLOWER, FOLLOWED);
 
 		User updatedFollower = usersRepository.findByUsername(FOLLOWER);
-		assertThat(updatedFollower, is(userWithFollowedUsernames(FOLLOWER, singletonList(FOLLOWED))));
+		assertThat(updatedFollower, is(userFollowingUsers(FOLLOWER, singletonList(FOLLOWED))));
 	}
 
 }
