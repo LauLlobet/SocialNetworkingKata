@@ -41,7 +41,7 @@ public class UsersWallFeature {
 
 	@Test public void
 	show_user_wall_containing_all_subscriptions() {
-		// Create posts
+		// Publish posts
 		given(clock.now()).willReturn(minutesAgo(5), minutesAgo(2), minutesAgo(1), secondsAgo(15));
 
 		prompt.readCommand("Alice -> I love the weather today");

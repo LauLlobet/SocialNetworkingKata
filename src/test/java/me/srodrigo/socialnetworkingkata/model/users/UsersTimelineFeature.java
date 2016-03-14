@@ -40,7 +40,7 @@ public class UsersTimelineFeature {
 
 	@Test public void
 	read_published_messages_by_users() {
-		// Create posts
+		// Publish posts
 		given(clock.now()).willReturn(minutesAgo(5), minutesAgo(2), minutesAgo(1));
 
 		prompt.readCommand("Alice -> I love the weather today");
