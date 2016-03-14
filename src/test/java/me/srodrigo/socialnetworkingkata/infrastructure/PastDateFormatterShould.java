@@ -16,6 +16,8 @@ import static org.mockito.BDDMockito.given;
 @RunWith(MockitoJUnitRunner.class)
 public class PastDateFormatterShould {
 
+	private static final int ONE_MILLISECOND = 1;
+
 	private PastDateFormatter pastDateFormatter;
 
 	@Mock private Clock clock;
@@ -29,7 +31,7 @@ public class PastDateFormatterShould {
 
 	@Test public void
 	format_zero_seconds_ago() {
-		String dateFormatted = pastDateFormatter.format(secondsAgo(1) + 1);
+		String dateFormatted = pastDateFormatter.format(secondsAgo(1) + ONE_MILLISECOND);
 
 		assertThat(dateFormatted, is("0 seconds ago"));
 	}
@@ -43,7 +45,7 @@ public class PastDateFormatterShould {
 
 	@Test public void
 	format_fifty_nine_seconds_ago() {
-		String dateFormatted = pastDateFormatter.format(minutesAgo(1) + 1);
+		String dateFormatted = pastDateFormatter.format(minutesAgo(1) + ONE_MILLISECOND);
 
 		assertThat(dateFormatted, is("59 seconds ago"));
 	}
@@ -64,7 +66,7 @@ public class PastDateFormatterShould {
 
 	@Test public void
 	format_five_minutes_ago_minus_one_millisecond() {
-		String dateFormatted = pastDateFormatter.format(minutesAgo(5) + 1);
+		String dateFormatted = pastDateFormatter.format(minutesAgo(5) + ONE_MILLISECOND);
 
 		assertThat(dateFormatted, is("4 minutes ago"));
 	}
