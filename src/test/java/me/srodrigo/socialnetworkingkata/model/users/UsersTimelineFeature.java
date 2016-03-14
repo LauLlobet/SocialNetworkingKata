@@ -1,10 +1,9 @@
 package me.srodrigo.socialnetworkingkata.model.users;
 
-import me.srodrigo.socialnetworkingkata.infrastructure.Console;
 import me.srodrigo.socialnetworkingkata.Prompt;
+import me.srodrigo.socialnetworkingkata.PromptFactory;
 import me.srodrigo.socialnetworkingkata.infrastructure.Clock;
-import me.srodrigo.socialnetworkingkata.infrastructure.PastDateFormatter;
-import me.srodrigo.socialnetworkingkata.model.posts.*;
+import me.srodrigo.socialnetworkingkata.infrastructure.Console;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -27,15 +26,7 @@ public class UsersTimelineFeature {
 
 	@Before
 	public void setUp() {
-		UsersRepository usersRepository = new UsersRepository();
-		PostsRepository postsRepository = new PostsRepository(clock);
-		PastDateFormatter pastDateFormatter = new PastDateFormatter(clock);
-		TimelinePostFormatter timelinePostFormatter = new TimelinePostFormatter(pastDateFormatter);
-		PostsPrinter timelinePrinter = new PostsPrinter(timelinePostFormatter, console);
-		PostFormatter wallPostFormatter = new WallPostFormatter(pastDateFormatter);
-		PostsPrinter wallPrinter = new PostsPrinter(wallPostFormatter, console);
-		UserService userService = new UserService(usersRepository, postsRepository, timelinePrinter, wallPrinter);
-		prompt = new Prompt(userService);
+		prompt = new PromptFactory().createPrompt(console, clock);
 	}
 
 	@Test public void
