@@ -14,7 +14,7 @@ public class TimelinePostFormatter implements PostFormatter {
 
 	@Override
 	public String format(Post post) {
-		String dateFormatted = pastDateFormatter.format(post.date());
-		return String.format(POST_FORMAT, post.message(), dateFormatted);
+		String formattedDate = pastDateFormatter.format(post.date());
+		return String.format(POST_FORMAT, post.message(), formattedDate);
 	}
 }
