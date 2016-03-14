@@ -35,6 +35,7 @@ public class PostsRepositoryShould {
 	@Before
 	public void setUp() {
 		postsRepository = new PostsRepository(clock);
+
 		given(clock.now()).willReturn(DEFAULT_DATE);
 	}
 
