@@ -23,9 +23,11 @@ public class PostsRepositoryShould {
 	private static final String MESSAGE = "A message";
 	private static final String ALICE = "Alice";
 	private static final String BOB = "Bob";
+	private static final String CHARLIE = "Charlie";
 	private static final String ALICE_MESSAGE = "Alice's message";
 	private static final String BOB_MESSAGE = "Bob's message";
 	private static final String BOB_SECOND_MESSAGE = "Bob's second message";
+	private static final String CHARLIE_MESSAGE = "Charlie message";
 	private static final long DEFAULT_DATE = now();
 
 	private PostsRepository postsRepository;
@@ -71,6 +73,7 @@ public class PostsRepositoryShould {
 	find_posts_by_multiple_usernames() {
 		postsRepository.createPostForUser(ALICE_MESSAGE, ALICE);
 		postsRepository.createPostForUser(BOB_MESSAGE, BOB);
+		postsRepository.createPostForUser(CHARLIE_MESSAGE, CHARLIE);
 		postsRepository.createPostForUser(BOB_SECOND_MESSAGE, BOB);
 
 		List<Post> posts = postsRepository.findByUsernames(asList(ALICE, BOB));
