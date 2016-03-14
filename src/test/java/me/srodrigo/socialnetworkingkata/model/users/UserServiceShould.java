@@ -72,7 +72,7 @@ public class UserServiceShould {
 
 	@Test public void
 	add_a_follower() {
-		userService.addFollowedUsername(FOLLOWER, FOLLOWED);
+		userService.addFollower(FOLLOWER, FOLLOWED);
 
 		verify(usersRepository).addFollower(FOLLOWER, FOLLOWED);
 	}
