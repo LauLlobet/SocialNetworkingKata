@@ -6,6 +6,7 @@ import java.util.List;
 import static java.util.Collections.*;
 
 public class User {
+
 	public static User NULL = new User("");
 
 	private final String username;
