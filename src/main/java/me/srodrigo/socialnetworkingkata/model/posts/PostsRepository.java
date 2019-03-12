@@ -19,6 +19,7 @@ public class PostsRepository {
 
 	public Post createPostForUser(String message, String username) {
 		Post newPost = new Post(username, message, clock.now());
+		Logger.logNewPost(username, message, PostFormat.PLAIN);
 		posts.add(newPost);
 		return newPost;
 	}
@@ -37,5 +38,18 @@ public class PostsRepository {
 		return posts.stream()
 				.filter(post -> usernames.contains(post.username()))
 				.collect(toList());
+	}
+
+	private static class Logger {
+		public static void logNewPost(String username, String message) {
+		}
+
+		public static void logNewPost(String username, String message, Object threedots) {
+		}
+	}
+
+	private class PostFormat {
+		public static final Object PLAIN = "";
+		public static Object THREEDOTS ;
 	}
 }
