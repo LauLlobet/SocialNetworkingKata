@@ -14,7 +14,7 @@ public class Prompt {
 		this.userService = userService;
 	}
 
-	public void readCommand(String command) {
+	public boolean readCommand(String command) {
 		if (isPostingCommand(command)) {
 			createPost(command);
 		} else if (isFollowingCommand(command)) {
@@ -24,6 +24,7 @@ public class Prompt {
 		} else {
 			showTimeline(command);
 		}
+		return !command.equals("exit");
 	}
 
 	private boolean isPostingCommand(String command) {
@@ -79,6 +80,7 @@ public class Prompt {
 	private class CreatePostParameters {
 		String username;
 		String postMessage;
+		String version = "1.1";
 
 		public CreatePostParameters(String username, String postMessage) {
 			this.username = username;

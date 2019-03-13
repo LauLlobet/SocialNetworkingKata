@@ -28,4 +28,7 @@ public class PostsPrinter {
 				.map(postFormatter::format)
 				.forEachOrdered(console::printLine);
 	}
+
+	public void log(List<Post> userPosts) {
+	}
 }

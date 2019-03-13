@@ -40,6 +40,11 @@ public class PostsRepository {
 				.collect(toList());
 	}
 
+	public List<Post> findByUsernameStartingBy(String username) {
+
+
+	}
+
 	private static class Logger {
 		public static void logNewPost(String username, String message) {
 		}
